@@ -1,0 +1,20 @@
+model Application {
+  id         String @id @default(uuid())
+
+  tuitionId  String
+  tutorId    String
+
+  status ApplicationStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+
+  //////////////////////////////////////////////////
+  // RELATIONS
+  //////////////////////////////////////////////////
+
+  tuition Tuition @relation(fields: [tuitionId], references: [id], onDelete: Cascade)
+
+  tutor User @relation(fields: [tutorId], references: [id], onDelete: Cascade)
+
+  @@unique([tuitionId, tutorId]) // prevent duplicate apply
+}

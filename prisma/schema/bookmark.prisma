@@ -1,0 +1,11 @@
+model Bookmark {
+  id String @id @default(uuid())
+
+  userId     String
+  tuitionId  String
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tuition Tuition @relation(fields: [tuitionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tuitionId])
+}

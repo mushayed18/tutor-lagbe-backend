@@ -1,0 +1,41 @@
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String
+  photo     String?
+  location  String?
+
+  role      Role
+
+  // subscription
+  subscriptionType        SubscriptionType @default(FREE)
+  subscriptionRole        SubscriptionRole?
+  subscriptionExpiresAt   DateTime?
+
+  isVerified Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //////////////////////////////////////////////////
+  // RELATIONS
+  //////////////////////////////////////////////////
+
+  // Tutor
+  portfolio TutorPortfolio?
+
+  applications Application[]
+
+  // Parent
+  tuitions Tuition[]
+
+  // Reviews
+  reviewsGiven    Review[] @relation("Reviewer")
+  reviewsReceived Review[] @relation("TargetUser")
+
+  bookmarks Bookmark[]
+
+  payments Payment[]
+}

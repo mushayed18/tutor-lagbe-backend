@@ -1,0 +1,31 @@
+model Tuition {
+  id        String @id @default(uuid())
+
+  parentId  String
+
+  title       String
+  description String
+  subject     String
+  classLevel  String
+  salary      Int
+  location    String
+
+  daysPerWeek Int
+  timeSlot    String
+
+  isFeatured Boolean @default(false)
+
+  status TuitionStatus @default(OPEN)
+
+  createdAt DateTime @default(now())
+
+  //////////////////////////////////////////////////
+  // RELATIONS
+  //////////////////////////////////////////////////
+
+  parent User @relation(fields: [parentId], references: [id], onDelete: Cascade)
+
+  applications Application[]
+
+  bookmarks Bookmark[]
+}

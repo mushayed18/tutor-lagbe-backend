@@ -1,0 +1,17 @@
+model TutorPortfolio {
+  id        String @id @default(uuid())
+  userId    String @unique
+
+  headline String
+  bio      String
+
+  university        String
+  department        String
+  experience        String
+  subjects          String[]   // PostgreSQL array
+  preferredClasses  String[]
+  expectedSalary    Int
+  availability      String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,19 @@
+model Review {
+  id            String @id @default(uuid())
+
+  reviewerId    String
+  targetUserId  String
+
+  rating  Int
+  comment String
+
+  createdAt DateTime @default(now())
+
+  //////////////////////////////////////////////////
+  // RELATIONS
+  //////////////////////////////////////////////////
+
+  reviewer User @relation("Reviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  target   User @relation("TargetUser", fields: [targetUserId], references: [id], onDelete: Cascade)
+}

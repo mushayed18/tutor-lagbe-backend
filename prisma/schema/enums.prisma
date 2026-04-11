@@ -1,0 +1,36 @@
+enum Role {
+  TUTOR
+  PARENT
+  ADMIN
+}
+
+enum SubscriptionType {
+  FREE
+  PREMIUM
+}
+
+enum SubscriptionRole {
+  TUTOR
+  PARENT
+}
+
+enum TuitionStatus {
+  OPEN
+  CLOSED
+}
+
+enum ApplicationStatus {
+  PENDING
+  HIRED
+  REJECTED
+}
+
+enum PaymentType {
+  TUTOR_SUBSCRIPTION
+  PARENT_SUBSCRIPTION
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+}

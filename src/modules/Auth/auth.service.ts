@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { RegisterInput } from "./auth.validation";
 import { VerifyEmailInput } from "./auth.validation";
 import { generateToken } from "../../utils/jwt";
+import { LoginInput } from "./auth.validation";
 
 const generateOtp = (): string => {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -59,7 +60,6 @@ const register = async (payload: RegisterInput) => {
   };
 };
 
-
 const verifyEmail = async (payload: VerifyEmailInput) => {
   const { email, otp } = payload;
 
@@ -105,7 +105,38 @@ const verifyEmail = async (payload: VerifyEmailInput) => {
   return { token, user };
 };
 
+const login = async (payload: LoginInput) => {
+  const { email, password } = payload;
+
+  // 1. Find user
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  // 2. Check verified
+  if (!user.isVerified) {
+    throw new Error("Please verify your email first");
+  }
+
+  // 3. Compare password
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    throw new Error("Invalid credentials");
+  }
+
+  // 4. Generate token
+  const token = generateToken(user);
+
+  return { token, user };
+};
+
 export const AuthService = {
   register,
   verifyEmail,
+  login,
 };

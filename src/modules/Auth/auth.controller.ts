@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { registerSchema } from './auth.validation';
 import { verifyEmailSchema } from "./auth.validation";
 import { cookieOptions } from "../../config/cookie";
+import { loginSchema } from "./auth.validation";
 
 const register = async (req: Request, res: Response) => {
   try {
@@ -62,4 +63,29 @@ const verifyEmail = async (req: Request, res: Response) => {
   }
 };
 
-export { register, verifyEmail };
+const login = async (req: Request, res: Response) => {
+  try {
+    const validatedData = loginSchema.parse(req.body);
+
+    const result = await AuthService.login(validatedData);
+
+    // 🍪 Set cookie
+    res.cookie("token", result.token, cookieOptions);
+
+    // remove password before sending
+    const { password, ...userData } = result.user;
+
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      data: userData,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { register, verifyEmail, login };

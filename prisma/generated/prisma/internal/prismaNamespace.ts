@@ -1067,6 +1067,10 @@ export const OtpScalarFieldEnum = {
   email: 'email',
   otp: 'otp',
   expiresAt: 'expiresAt',
+  name: 'name',
+  phone: 'phone',
+  role: 'role',
+  hashedPassword: 'hashedPassword',
   createdAt: 'createdAt'
 } as const
 
@@ -1226,6 +1230,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Role'
+ */
+export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+/**
+ * Reference to a field of type 'Role[]'
+ */
+export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+/**
  * Reference to a field of type 'PaymentType'
  */
 export type EnumPaymentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentType'>
@@ -1285,20 +1303,6 @@ export type EnumTuitionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'TuitionStatus[]'
  */
 export type ListEnumTuitionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TuitionStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Role'
- */
-export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
-    
-
-
-/**
- * Reference to a field of type 'Role[]'
- */
-export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
     
 
 

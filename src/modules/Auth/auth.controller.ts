@@ -2,8 +2,10 @@
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { registerSchema } from './auth.validation';
+import { verifyEmailSchema } from "./auth.validation";
+import { cookieOptions } from "../../config/cookie";
 
-export const register = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response) => {
   try {
     // Validate input
     const validatedData = registerSchema.parse(req.body);
@@ -34,3 +36,30 @@ export const register = async (req: Request, res: Response) => {
     });
   }
 };
+
+const verifyEmail = async (req: Request, res: Response) => {
+  try {
+    const validatedData = verifyEmailSchema.parse(req.body);
+
+    const result = await AuthService.verifyEmail(validatedData);
+
+    // 🍪 SET COOKIE
+    res.cookie("token", result.token, cookieOptions);
+
+    // remove password before sending
+    const { password, ...userData } = result.user;
+
+    res.status(200).json({
+      success: true,
+      message: "Email verified successfully",
+      data: userData,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { register, verifyEmail };

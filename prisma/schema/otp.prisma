@@ -1,7 +1,15 @@
 model Otp {
-  id        String   @id @default(uuid())
-  email     String
-  otp       String
-  expiresAt DateTime
-  createdAt DateTime @default(now())
+  id              String   @id @default(uuid())
+  email           String   @unique
+
+  otp             String
+  expiresAt       DateTime
+
+  // Temporary user registration data
+  name            String?
+  phone           String?
+  role            Role?               
+  hashedPassword  String?
+
+  createdAt       DateTime @default(now())
 }

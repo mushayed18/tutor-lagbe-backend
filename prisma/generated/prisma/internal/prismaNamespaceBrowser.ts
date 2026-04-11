@@ -102,6 +102,10 @@ export const OtpScalarFieldEnum = {
   email: 'email',
   otp: 'otp',
   expiresAt: 'expiresAt',
+  name: 'name',
+  phone: 'phone',
+  role: 'role',
+  hashedPassword: 'hashedPassword',
   createdAt: 'createdAt'
 } as const
 

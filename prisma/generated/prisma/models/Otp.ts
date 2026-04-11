@@ -29,6 +29,10 @@ export type OtpMinAggregateOutputType = {
   email: string | null
   otp: string | null
   expiresAt: Date | null
+  name: string | null
+  phone: string | null
+  role: $Enums.Role | null
+  hashedPassword: string | null
   createdAt: Date | null
 }
 
@@ -37,6 +41,10 @@ export type OtpMaxAggregateOutputType = {
   email: string | null
   otp: string | null
   expiresAt: Date | null
+  name: string | null
+  phone: string | null
+  role: $Enums.Role | null
+  hashedPassword: string | null
   createdAt: Date | null
 }
 
@@ -45,6 +53,10 @@ export type OtpCountAggregateOutputType = {
   email: number
   otp: number
   expiresAt: number
+  name: number
+  phone: number
+  role: number
+  hashedPassword: number
   createdAt: number
   _all: number
 }
@@ -55,6 +67,10 @@ export type OtpMinAggregateInputType = {
   email?: true
   otp?: true
   expiresAt?: true
+  name?: true
+  phone?: true
+  role?: true
+  hashedPassword?: true
   createdAt?: true
 }
 
@@ -63,6 +79,10 @@ export type OtpMaxAggregateInputType = {
   email?: true
   otp?: true
   expiresAt?: true
+  name?: true
+  phone?: true
+  role?: true
+  hashedPassword?: true
   createdAt?: true
 }
 
@@ -71,6 +91,10 @@ export type OtpCountAggregateInputType = {
   email?: true
   otp?: true
   expiresAt?: true
+  name?: true
+  phone?: true
+  role?: true
+  hashedPassword?: true
   createdAt?: true
   _all?: true
 }
@@ -152,6 +176,10 @@ export type OtpGroupByOutputType = {
   email: string
   otp: string
   expiresAt: Date
+  name: string | null
+  phone: string | null
+  role: $Enums.Role | null
+  hashedPassword: string | null
   createdAt: Date
   _count: OtpCountAggregateOutputType | null
   _min: OtpMinAggregateOutputType | null
@@ -181,6 +209,10 @@ export type OtpWhereInput = {
   email?: Prisma.StringFilter<"Otp"> | string
   otp?: Prisma.StringFilter<"Otp"> | string
   expiresAt?: Prisma.DateTimeFilter<"Otp"> | Date | string
+  name?: Prisma.StringNullableFilter<"Otp"> | string | null
+  phone?: Prisma.StringNullableFilter<"Otp"> | string | null
+  role?: Prisma.EnumRoleNullableFilter<"Otp"> | $Enums.Role | null
+  hashedPassword?: Prisma.StringNullableFilter<"Otp"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Otp"> | Date | string
 }
 
@@ -189,25 +221,37 @@ export type OtpOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   otp?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type OtpWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  email?: string
   AND?: Prisma.OtpWhereInput | Prisma.OtpWhereInput[]
   OR?: Prisma.OtpWhereInput[]
   NOT?: Prisma.OtpWhereInput | Prisma.OtpWhereInput[]
-  email?: Prisma.StringFilter<"Otp"> | string
   otp?: Prisma.StringFilter<"Otp"> | string
   expiresAt?: Prisma.DateTimeFilter<"Otp"> | Date | string
+  name?: Prisma.StringNullableFilter<"Otp"> | string | null
+  phone?: Prisma.StringNullableFilter<"Otp"> | string | null
+  role?: Prisma.EnumRoleNullableFilter<"Otp"> | $Enums.Role | null
+  hashedPassword?: Prisma.StringNullableFilter<"Otp"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Otp"> | Date | string
-}, "id">
+}, "id" | "email">
 
 export type OtpOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   otp?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrderInput | Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.OtpCountOrderByAggregateInput
   _max?: Prisma.OtpMaxOrderByAggregateInput
@@ -222,6 +266,10 @@ export type OtpScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"Otp"> | string
   otp?: Prisma.StringWithAggregatesFilter<"Otp"> | string
   expiresAt?: Prisma.DateTimeWithAggregatesFilter<"Otp"> | Date | string
+  name?: Prisma.StringNullableWithAggregatesFilter<"Otp"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"Otp"> | string | null
+  role?: Prisma.EnumRoleNullableWithAggregatesFilter<"Otp"> | $Enums.Role | null
+  hashedPassword?: Prisma.StringNullableWithAggregatesFilter<"Otp"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Otp"> | Date | string
 }
 
@@ -230,6 +278,10 @@ export type OtpCreateInput = {
   email: string
   otp: string
   expiresAt: Date | string
+  name?: string | null
+  phone?: string | null
+  role?: $Enums.Role | null
+  hashedPassword?: string | null
   createdAt?: Date | string
 }
 
@@ -238,6 +290,10 @@ export type OtpUncheckedCreateInput = {
   email: string
   otp: string
   expiresAt: Date | string
+  name?: string | null
+  phone?: string | null
+  role?: $Enums.Role | null
+  hashedPassword?: string | null
   createdAt?: Date | string
 }
 
@@ -246,6 +302,10 @@ export type OtpUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   otp?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  hashedPassword?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -254,6 +314,10 @@ export type OtpUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   otp?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  hashedPassword?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -262,6 +326,10 @@ export type OtpCreateManyInput = {
   email: string
   otp: string
   expiresAt: Date | string
+  name?: string | null
+  phone?: string | null
+  role?: $Enums.Role | null
+  hashedPassword?: string | null
   createdAt?: Date | string
 }
 
@@ -270,6 +338,10 @@ export type OtpUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   otp?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  hashedPassword?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -278,6 +350,10 @@ export type OtpUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   otp?: Prisma.StringFieldUpdateOperationsInput | string
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null
+  hashedPassword?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -286,6 +362,10 @@ export type OtpCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   otp?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -294,6 +374,10 @@ export type OtpMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   otp?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -302,7 +386,19 @@ export type OtpMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   otp?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  role?: Prisma.SortOrder
+  hashedPassword?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableEnumRoleFieldUpdateOperationsInput = {
+  set?: $Enums.Role | null
 }
 
 
@@ -312,6 +408,10 @@ export type OtpSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   email?: boolean
   otp?: boolean
   expiresAt?: boolean
+  name?: boolean
+  phone?: boolean
+  role?: boolean
+  hashedPassword?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["otp"]>
 
@@ -320,6 +420,10 @@ export type OtpSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   email?: boolean
   otp?: boolean
   expiresAt?: boolean
+  name?: boolean
+  phone?: boolean
+  role?: boolean
+  hashedPassword?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["otp"]>
 
@@ -328,6 +432,10 @@ export type OtpSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   email?: boolean
   otp?: boolean
   expiresAt?: boolean
+  name?: boolean
+  phone?: boolean
+  role?: boolean
+  hashedPassword?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["otp"]>
 
@@ -336,10 +444,14 @@ export type OtpSelectScalar = {
   email?: boolean
   otp?: boolean
   expiresAt?: boolean
+  name?: boolean
+  phone?: boolean
+  role?: boolean
+  hashedPassword?: boolean
   createdAt?: boolean
 }
 
-export type OtpOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "otp" | "expiresAt" | "createdAt", ExtArgs["result"]["otp"]>
+export type OtpOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "otp" | "expiresAt" | "name" | "phone" | "role" | "hashedPassword" | "createdAt", ExtArgs["result"]["otp"]>
 
 export type $OtpPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Otp"
@@ -349,6 +461,10 @@ export type $OtpPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     email: string
     otp: string
     expiresAt: Date
+    name: string | null
+    phone: string | null
+    role: $Enums.Role | null
+    hashedPassword: string | null
     createdAt: Date
   }, ExtArgs["result"]["otp"]>
   composites: {}
@@ -777,6 +893,10 @@ export interface OtpFieldRefs {
   readonly email: Prisma.FieldRef<"Otp", 'String'>
   readonly otp: Prisma.FieldRef<"Otp", 'String'>
   readonly expiresAt: Prisma.FieldRef<"Otp", 'DateTime'>
+  readonly name: Prisma.FieldRef<"Otp", 'String'>
+  readonly phone: Prisma.FieldRef<"Otp", 'String'>
+  readonly role: Prisma.FieldRef<"Otp", 'Role'>
+  readonly hashedPassword: Prisma.FieldRef<"Otp", 'String'>
   readonly createdAt: Prisma.FieldRef<"Otp", 'DateTime'>
 }
     

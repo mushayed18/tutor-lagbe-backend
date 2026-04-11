@@ -1,50 +1,111 @@
-// src/controllers/Auth/auth.service.ts
-import { prisma } from '../../lib/prisma';
-import { sendOtpEmail } from '../../utils/sendEmail';
-import bcrypt from 'bcryptjs';
-import { RegisterInput } from './auth.validation';
+import { prisma } from "../../lib/prisma";
+import { sendOtpEmail } from "../../utils/sendEmail";
+import bcrypt from "bcryptjs";
+import { RegisterInput } from "./auth.validation";
+import { VerifyEmailInput } from "./auth.validation";
+import { generateToken } from "../../utils/jwt";
 
 const generateOtp = (): string => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-export const AuthService = {
-  async register(payload: RegisterInput) {
-    const { name, email, password, phone, role } = payload;
+const register = async (payload: RegisterInput) => {
+  const { name, email, password, phone, role } = payload;
 
-    // Check if user already exists and is verified
-    const existingUser = await prisma.user.findUnique({ where: { email } });
-    if (existingUser && existingUser.isVerified) {
-      throw new Error('Email already registered');
-    }
+  // 1. Check if verified user already exists
+  const existingUser = await prisma.user.findUnique({
+    where: { email },
+  });
 
-    // Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+  if (existingUser && existingUser.isVerified) {
+    throw new Error("Email already registered");
+  }
 
-    // Generate OTP
-    const otp = generateOtp();
-    const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+  // 2. Hash password
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Save/Update OTP
-    const existingOtp = await prisma.otp.findFirst({ where: { email } });
-    if (existingOtp) {
-      await prisma.otp.update({
-        where: { id: existingOtp.id },
-        data: { otp, expiresAt },
-      });
-    } else {
-      await prisma.otp.create({
-        data: { email, otp, expiresAt },
-      });
-    }
+  // 3. Generate OTP
+  const otp = generateOtp();
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
-    // Send OTP email
-    await sendOtpEmail(email, otp);
-
-    return {
-      message: 'Please check your email for the OTP.',
+  // 4. Upsert OTP (IMPORTANT FIX)
+  await prisma.otp.upsert({
+    where: { email }, // make email UNIQUE in schema
+    update: {
+      otp,
+      expiresAt,
+      name,
+      phone,
+      role,
+      hashedPassword,
+    },
+    create: {
       email,
-    };
-  },
+      otp,
+      expiresAt,
+      name,
+      phone,
+      role,
+      hashedPassword,
+    },
+  });
+
+  // 5. Send Email
+  await sendOtpEmail(email, otp);
+
+  return {
+    message: "Please check your email for OTP",
+    email,
+  };
+};
+
+
+const verifyEmail = async (payload: VerifyEmailInput) => {
+  const { email, otp } = payload;
+
+  // 1. Find OTP record
+  const otpRecord = await prisma.otp.findUnique({
+    where: { email },
+  });
+
+  if (!otpRecord) {
+    throw new Error("No OTP request found");
+  }
+
+  // 2. Check OTP
+  if (otpRecord.otp !== otp) {
+    throw new Error("Invalid OTP");
+  }
+
+  // 3. Check expiration
+  if (otpRecord.expiresAt < new Date()) {
+    throw new Error("OTP expired");
+  }
+
+  // 4. Create user
+  const user = await prisma.user.create({
+    data: {
+      name: otpRecord.name!,
+      email: otpRecord.email,
+      password: otpRecord.hashedPassword!,
+      phone: otpRecord.phone!,
+      role: otpRecord.role!,
+      isVerified: true,
+    },
+  });
+
+  // 5. Delete OTP record
+  await prisma.otp.delete({
+    where: { email },
+  });
+
+  // 6. Generate JWT
+  const token = generateToken(user);
+
+  return { token, user };
+};
+
+export const AuthService = {
+  register,
+  verifyEmail,
 };

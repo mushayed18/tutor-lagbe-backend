@@ -28,6 +28,11 @@ export type Application = Prisma.ApplicationModel
  */
 export type Bookmark = Prisma.BookmarkModel
 /**
+ * Model Otp
+ * 
+ */
+export type Otp = Prisma.OtpModel
+/**
  * Model Payment
  * 
  */

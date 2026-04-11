@@ -386,6 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Application: 'Application',
   Bookmark: 'Bookmark',
+  Otp: 'Otp',
   Payment: 'Payment',
   Review: 'Review',
   Tuition: 'Tuition',
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "application" | "bookmark" | "payment" | "review" | "tuition" | "tutorPortfolio" | "user"
+    modelProps: "application" | "bookmark" | "otp" | "payment" | "review" | "tuition" | "tutorPortfolio" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -555,6 +556,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BookmarkCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BookmarkCountAggregateOutputType> | number
+        }
+      }
+    }
+    Otp: {
+      payload: Prisma.$OtpPayload<ExtArgs>
+      fields: Prisma.OtpFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OtpFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OtpFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>
+        }
+        findFirst: {
+          args: Prisma.OtpFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OtpFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>
+        }
+        findMany: {
+          args: Prisma.OtpFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>[]
+        }
+        create: {
+          args: Prisma.OtpCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>
+        }
+        createMany: {
+          args: Prisma.OtpCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OtpCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>[]
+        }
+        delete: {
+          args: Prisma.OtpDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>
+        }
+        update: {
+          args: Prisma.OtpUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>
+        }
+        deleteMany: {
+          args: Prisma.OtpDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OtpUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OtpUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>[]
+        }
+        upsert: {
+          args: Prisma.OtpUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OtpPayload>
+        }
+        aggregate: {
+          args: Prisma.OtpAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOtp>
+        }
+        groupBy: {
+          args: Prisma.OtpGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OtpGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OtpCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OtpCountAggregateOutputType> | number
         }
       }
     }
@@ -987,6 +1062,17 @@ export const BookmarkScalarFieldEnum = {
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
 
 
+export const OtpScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  otp: 'otp',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type OtpScalarFieldEnum = (typeof OtpScalarFieldEnum)[keyof typeof OtpScalarFieldEnum]
+
+
 export const PaymentScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -1354,6 +1440,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   application?: Prisma.ApplicationOmit
   bookmark?: Prisma.BookmarkOmit
+  otp?: Prisma.OtpOmit
   payment?: Prisma.PaymentOmit
   review?: Prisma.ReviewOmit
   tuition?: Prisma.TuitionOmit

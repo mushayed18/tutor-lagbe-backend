@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Application: 'Application',
   Bookmark: 'Bookmark',
+  Otp: 'Otp',
   Payment: 'Payment',
   Review: 'Review',
   Tuition: 'Tuition',
@@ -94,6 +95,17 @@ export const BookmarkScalarFieldEnum = {
 } as const
 
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
+
+
+export const OtpScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  otp: 'otp',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type OtpScalarFieldEnum = (typeof OtpScalarFieldEnum)[keyof typeof OtpScalarFieldEnum]
 
 
 export const PaymentScalarFieldEnum = {

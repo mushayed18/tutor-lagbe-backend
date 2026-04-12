@@ -1,8 +1,12 @@
 // src/controllers/Auth/auth.controller.ts
-import { Request, Response } from 'express';
-import { AuthService } from './auth.service';
-import { registerSchema, resetPasswordSchema } from './auth.validation';
-import { verifyEmailSchema } from "./auth.validation";
+import { Request, Response } from "express";
+import { AuthService } from "./auth.service";
+import {
+  registerSchema,
+  resetPasswordSchema,
+  changePasswordSchema,
+  verifyEmailSchema,
+} from "./auth.validation";
 import { cookieOptions } from "../../config/cookie";
 import { loginSchema, forgotPasswordSchema } from "./auth.validation";
 
@@ -20,7 +24,7 @@ const register = async (req: Request, res: Response) => {
       data: { email: result.email },
     });
   } catch (error: any) {
-    console.error('Register Error:', error);
+    console.error("Register Error:", error);
 
     // Handle Zod validation errors
     if (error.errors) {
@@ -33,7 +37,7 @@ const register = async (req: Request, res: Response) => {
 
     res.status(400).json({
       success: false,
-      message: error.message || 'Registration failed',
+      message: error.message || "Registration failed",
     });
   }
 };
@@ -133,4 +137,33 @@ const resetPassword = async (req: Request, res: Response) => {
   }
 };
 
-export { register, verifyEmail, login, logout, forgotPassword, resetPassword };
+const changePassword = async (req: Request, res: Response) => {
+  try {
+    const validatedData = changePasswordSchema.parse(req.body);
+
+    // 🔥 user comes from middleware
+    const userId = req.user.id;
+
+    const result = await AuthService.changePassword(userId, validatedData);
+
+    res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export {
+  register,
+  verifyEmail,
+  login,
+  logout,
+  forgotPassword,
+  resetPassword,
+  changePassword,
+};

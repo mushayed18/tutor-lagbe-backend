@@ -1,8 +1,12 @@
 import { prisma } from "../../lib/prisma";
 import { sendOtpEmail } from "../../utils/sendEmail";
 import bcrypt from "bcryptjs";
-import { RegisterInput } from "./auth.validation";
-import { VerifyEmailInput, ForgotPasswordInput, ResetPasswordInput } from "./auth.validation";
+import { ChangePasswordInput, RegisterInput } from "./auth.validation";
+import {
+  VerifyEmailInput,
+  ForgotPasswordInput,
+  ResetPasswordInput,
+} from "./auth.validation";
 import { generateToken } from "../../utils/jwt";
 import { LoginInput } from "./auth.validation";
 
@@ -226,10 +230,52 @@ const resetPassword = async (payload: ResetPasswordInput) => {
   };
 };
 
+const changePassword = async (userId: string, payload: ChangePasswordInput) => {
+  const { currentPassword, newPassword } = payload;
+
+  // 1. Find user
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  // 2. Compare current password
+  const isMatch = await bcrypt.compare(currentPassword, user.password);
+
+  if (!isMatch) {
+    throw new Error("Current password is incorrect");
+  }
+
+  // 3. Prevent same password reuse (🔥 good practice)
+  const isSame = await bcrypt.compare(newPassword, user.password);
+  if (isSame) {
+    throw new Error("New password must be different from current password");
+  }
+
+  // 4. Hash new password
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  // 5. Update password
+  await prisma.user.update({
+    where: { id: userId },
+    data: {
+      password: hashedPassword,
+    },
+  });
+
+  return {
+    message: "Password changed successfully",
+  };
+};
+
 export const AuthService = {
   register,
   verifyEmail,
   login,
   forgotPassword,
   resetPassword,
+  changePassword,
 };

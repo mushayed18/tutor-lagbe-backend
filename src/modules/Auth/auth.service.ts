@@ -2,7 +2,7 @@ import { prisma } from "../../lib/prisma";
 import { sendOtpEmail } from "../../utils/sendEmail";
 import bcrypt from "bcryptjs";
 import { RegisterInput } from "./auth.validation";
-import { VerifyEmailInput } from "./auth.validation";
+import { VerifyEmailInput, ForgotPasswordInput, ResetPasswordInput } from "./auth.validation";
 import { generateToken } from "../../utils/jwt";
 import { LoginInput } from "./auth.validation";
 
@@ -135,8 +135,101 @@ const login = async (payload: LoginInput) => {
   return { token, user };
 };
 
+const forgotPassword = async (payload: ForgotPasswordInput) => {
+  const { email } = payload;
+
+  // 1. Check if user exists
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  // ⚠️ Security: Don't reveal user existence
+  if (!user) {
+    return {
+      message: "If this email exists, an OTP has been sent",
+    };
+  }
+
+  // 2. Generate OTP
+  const otp = generateOtp();
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
+
+  // 3. Store OTP (type = RESET_PASSWORD)
+  await prisma.otp.upsert({
+    where: { email },
+    update: {
+      otp,
+      expiresAt,
+      type: "RESET_PASSWORD",
+    },
+    create: {
+      email,
+      otp,
+      expiresAt,
+      type: "RESET_PASSWORD",
+    },
+  });
+
+  // 4. Send email
+  await sendOtpEmail(email, otp);
+
+  return {
+    message: "If this email exists, an OTP has been sent",
+  };
+};
+
+const resetPassword = async (payload: ResetPasswordInput) => {
+  const { email, otp, newPassword } = payload;
+
+  // 1. Find OTP record
+  const otpRecord = await prisma.otp.findUnique({
+    where: { email },
+  });
+
+  if (!otpRecord) {
+    throw new Error("Invalid request");
+  }
+
+  // 2. Check type (VERY IMPORTANT)
+  if (otpRecord.type !== "RESET_PASSWORD") {
+    throw new Error("Invalid OTP type");
+  }
+
+  // 3. Match OTP
+  if (otpRecord.otp !== otp) {
+    throw new Error("Invalid OTP");
+  }
+
+  // 4. Check expiry
+  if (otpRecord.expiresAt < new Date()) {
+    throw new Error("OTP expired");
+  }
+
+  // 5. Hash new password
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  // 6. Update user password
+  await prisma.user.update({
+    where: { email },
+    data: {
+      password: hashedPassword,
+    },
+  });
+
+  // 7. Delete OTP
+  await prisma.otp.delete({
+    where: { email },
+  });
+
+  return {
+    message: "Password reset successful",
+  };
+};
+
 export const AuthService = {
   register,
   verifyEmail,
   login,
+  forgotPassword,
+  resetPassword,
 };

@@ -1,10 +1,10 @@
 // src/controllers/Auth/auth.controller.ts
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
-import { registerSchema } from './auth.validation';
+import { registerSchema, resetPasswordSchema } from './auth.validation';
 import { verifyEmailSchema } from "./auth.validation";
 import { cookieOptions } from "../../config/cookie";
-import { loginSchema } from "./auth.validation";
+import { loginSchema, forgotPasswordSchema } from "./auth.validation";
 
 const register = async (req: Request, res: Response) => {
   try {
@@ -97,4 +97,40 @@ const logout = (req: Request, res: Response) => {
   });
 };
 
-export { register, verifyEmail, login, logout };
+const forgotPassword = async (req: Request, res: Response) => {
+  try {
+    const validatedData = forgotPasswordSchema.parse(req.body);
+
+    const result = await AuthService.forgotPassword(validatedData);
+
+    res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+const resetPassword = async (req: Request, res: Response) => {
+  try {
+    const validatedData = resetPasswordSchema.parse(req.body);
+
+    const result = await AuthService.resetPassword(validatedData);
+
+    res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { register, verifyEmail, login, logout, forgotPassword, resetPassword };

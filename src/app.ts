@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './modules/Auth/auth.route';
+import userRoutes from './modules/User/user.route';
 
 const app: Application = express();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 // ✅ API Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from Tutor Lagbe!');

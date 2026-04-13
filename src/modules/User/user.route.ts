@@ -1,5 +1,15 @@
-import express from 'express';
+import { Router } from "express";
+import { updateProfile } from "./user.controller";
+import { authMiddleware } from "../../middlewares/auth.middleware";
+import { upload } from "../../middlewares/multer.middleware";
 
-const router = express.Router();
+const router = Router();
 
-export const UserRoutes = router;
+router.patch(
+  "/me",
+  authMiddleware,
+  upload.single("photo"), // 🔥 important
+  updateProfile
+);
+
+export default router;

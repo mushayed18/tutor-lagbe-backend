@@ -43,6 +43,7 @@ const register = async (payload: RegisterInput) => {
       phone,
       role,
       hashedPassword,
+      type: "REGISTER",
     },
     create: {
       email,
@@ -52,6 +53,7 @@ const register = async (payload: RegisterInput) => {
       phone,
       role,
       hashedPassword,
+      type: "REGISTER",
     },
   });
 

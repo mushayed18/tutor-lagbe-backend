@@ -141,10 +141,13 @@ const changePassword = async (req: Request, res: Response) => {
   try {
     const validatedData = changePasswordSchema.parse(req.body);
 
-    // 🔥 user comes from middleware
+    // user comes from middleware
     const userId = req.user.id;
 
     const result = await AuthService.changePassword(userId, validatedData);
+
+    // OPTIONAL SECURITY STEP
+    res.clearCookie("token", cookieOptions);
 
     res.status(200).json({
       success: true,

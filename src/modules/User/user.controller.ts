@@ -20,4 +20,26 @@ const updateProfile = async (req: Request, res: Response) => {
   }
 };
 
-export { updateProfile };
+const getUserProfile = async (req: Request, res: Response) => {
+  try {
+    const requester = req.user; // from middleware
+    const targetUserId = req.params.id as string;
+
+    const result = await UserService.getUserProfile(
+      requester,
+      targetUserId
+    );
+
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { updateProfile, getUserProfile };

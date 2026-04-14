@@ -73,6 +73,59 @@ const createReview = async (requester: any, payload: any) => {
   return review;
 };
 
+const updateReview = async (
+  requester: any,
+  reviewId: string,
+  payload: any
+) => {
+  // 1. Find review
+  const review = await prisma.review.findUnique({
+    where: { id: reviewId },
+  });
+
+  if (!review) {
+    throw new Error("Review not found");
+  }
+
+  // 2. Ownership check 🔥
+  if (review.reviewerId !== requester.id) {
+    throw new Error("You are not allowed to update this review");
+  }
+
+  // 3. Update
+  const updatedReview = await prisma.review.update({
+    where: { id: reviewId },
+    data: payload,
+  });
+
+  return updatedReview;
+};
+
+const deleteReview = async (requester: any, reviewId: string) => {
+  // 1. Find review
+  const review = await prisma.review.findUnique({
+    where: { id: reviewId },
+  });
+
+  if (!review) {
+    throw new Error("Review not found");
+  }
+
+  // 2. Ownership check
+  if (review.reviewerId !== requester.id) {
+    throw new Error("You are not allowed to delete this review");
+  }
+
+  // 3. Delete
+  await prisma.review.delete({
+    where: { id: reviewId },
+  });
+
+  return;
+};
+
 export const ReviewService = {
   createReview,
+  updateReview,
+  deleteReview,
 };

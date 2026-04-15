@@ -1,0 +1,24 @@
+model HireRelation {
+  id String @id @default(uuid())
+
+  tutorId   String
+  parentId  String
+  tuitionId String
+
+  createdAt DateTime @default(now())
+
+  //////////////////////////////////////////////////
+  // RELATIONS
+  //////////////////////////////////////////////////
+
+  tutor   User    @relation("TutorHire", fields: [tutorId], references: [id], onDelete: Cascade)
+  parent  User    @relation("ParentHire", fields: [parentId], references: [id], onDelete: Cascade)
+  tuition Tuition @relation(fields: [tuitionId], references: [id], onDelete: Cascade)
+
+  //////////////////////////////////////////////////
+  // INDEXES (VERY IMPORTANT 🔥)
+  //////////////////////////////////////////////////
+
+  @@index([tutorId, parentId])
+  @@unique([tutorId, tuitionId]) // prevent duplicate hire
+}

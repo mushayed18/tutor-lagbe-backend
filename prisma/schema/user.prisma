@@ -38,4 +38,7 @@ model User {
   bookmarks Bookmark[]
 
   payments Payment[]
+
+  tutorHires  HireRelation[] @relation("TutorHire")
+  parentHires HireRelation[] @relation("ParentHire")
 }

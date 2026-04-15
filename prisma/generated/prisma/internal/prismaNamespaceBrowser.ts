@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Application: 'Application',
   Bookmark: 'Bookmark',
+  HireRelation: 'HireRelation',
   Otp: 'Otp',
   Payment: 'Payment',
   Review: 'Review',
@@ -95,6 +96,17 @@ export const BookmarkScalarFieldEnum = {
 } as const
 
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
+
+
+export const HireRelationScalarFieldEnum = {
+  id: 'id',
+  tutorId: 'tutorId',
+  parentId: 'parentId',
+  tuitionId: 'tuitionId',
+  createdAt: 'createdAt'
+} as const
+
+export type HireRelationScalarFieldEnum = (typeof HireRelationScalarFieldEnum)[keyof typeof HireRelationScalarFieldEnum]
 
 
 export const OtpScalarFieldEnum = {

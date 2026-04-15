@@ -22,23 +22,16 @@ const createReview = async (requester: any, payload: any) => {
   }
 
   // 3. Check HIRED relationship (VERY IMPORTANT)
-  const hasHiredRelation = await prisma.application.findFirst({
+  const hasHiredRelation = await prisma.hireRelation.findFirst({
     where: {
-      status: "HIRED",
       OR: [
-        // Tutor reviewing Parent
         {
           tutorId: requester.id,
-          tuition: {
-            parentId: targetUserId,
-          },
+          parentId: targetUserId,
         },
-        // Parent reviewing Tutor
         {
           tutorId: targetUserId,
-          tuition: {
-            parentId: requester.id,
-          },
+          parentId: requester.id,
         },
       ],
     },
@@ -73,11 +66,7 @@ const createReview = async (requester: any, payload: any) => {
   return review;
 };
 
-const updateReview = async (
-  requester: any,
-  reviewId: string,
-  payload: any
-) => {
+const updateReview = async (requester: any, reviewId: string, payload: any) => {
   // 1. Find review
   const review = await prisma.review.findUnique({
     where: { id: reviewId },

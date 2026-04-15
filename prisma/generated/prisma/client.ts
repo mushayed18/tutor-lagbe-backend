@@ -50,6 +50,11 @@ export type Application = Prisma.ApplicationModel
  */
 export type Bookmark = Prisma.BookmarkModel
 /**
+ * Model HireRelation
+ * 
+ */
+export type HireRelation = Prisma.HireRelationModel
+/**
  * Model Otp
  * 
  */

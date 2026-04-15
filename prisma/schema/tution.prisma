@@ -28,4 +28,6 @@ model Tuition {
   applications Application[]
 
   bookmarks Bookmark[]
+
+  hireRelations HireRelation[]
 }

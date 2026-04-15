@@ -261,6 +261,8 @@ export type UserWhereInput = {
   reviewsReceived?: Prisma.ReviewListRelationFilter
   bookmarks?: Prisma.BookmarkListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  tutorHires?: Prisma.HireRelationListRelationFilter
+  parentHires?: Prisma.HireRelationListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -285,6 +287,8 @@ export type UserOrderByWithRelationInput = {
   reviewsReceived?: Prisma.ReviewOrderByRelationAggregateInput
   bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
+  tutorHires?: Prisma.HireRelationOrderByRelationAggregateInput
+  parentHires?: Prisma.HireRelationOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -312,6 +316,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   reviewsReceived?: Prisma.ReviewListRelationFilter
   bookmarks?: Prisma.BookmarkListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  tutorHires?: Prisma.HireRelationListRelationFilter
+  parentHires?: Prisma.HireRelationListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -376,6 +382,8 @@ export type UserCreateInput = {
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -400,6 +408,8 @@ export type UserUncheckedCreateInput = {
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserUpdateInput = {
@@ -424,6 +434,8 @@ export type UserUpdateInput = {
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -448,6 +460,8 @@ export type UserUncheckedUpdateInput = {
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -585,6 +599,34 @@ export type UserUpdateOneRequiredWithoutBookmarksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBookmarksInput, Prisma.UserUpdateWithoutBookmarksInput>, Prisma.UserUncheckedUpdateWithoutBookmarksInput>
 }
 
+export type UserCreateNestedOneWithoutTutorHiresInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTutorHiresInput, Prisma.UserUncheckedCreateWithoutTutorHiresInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTutorHiresInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutParentHiresInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutParentHiresInput, Prisma.UserUncheckedCreateWithoutParentHiresInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutParentHiresInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTutorHiresNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTutorHiresInput, Prisma.UserUncheckedCreateWithoutTutorHiresInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTutorHiresInput
+  upsert?: Prisma.UserUpsertWithoutTutorHiresInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTutorHiresInput, Prisma.UserUpdateWithoutTutorHiresInput>, Prisma.UserUncheckedUpdateWithoutTutorHiresInput>
+}
+
+export type UserUpdateOneRequiredWithoutParentHiresNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutParentHiresInput, Prisma.UserUncheckedCreateWithoutParentHiresInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutParentHiresInput
+  upsert?: Prisma.UserUpsertWithoutParentHiresInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutParentHiresInput, Prisma.UserUpdateWithoutParentHiresInput>, Prisma.UserUncheckedUpdateWithoutParentHiresInput>
+}
+
 export type UserCreateNestedOneWithoutPaymentsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsInput, Prisma.UserUncheckedCreateWithoutPaymentsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsInput
@@ -692,6 +734,8 @@ export type UserCreateWithoutApplicationsInput = {
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -715,6 +759,8 @@ export type UserUncheckedCreateWithoutApplicationsInput = {
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -754,6 +800,8 @@ export type UserUpdateWithoutApplicationsInput = {
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -777,6 +825,8 @@ export type UserUncheckedUpdateWithoutApplicationsInput = {
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type UserCreateWithoutBookmarksInput = {
@@ -800,6 +850,8 @@ export type UserCreateWithoutBookmarksInput = {
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutReviewerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateWithoutBookmarksInput = {
@@ -823,6 +875,8 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutReviewerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserCreateOrConnectWithoutBookmarksInput = {
@@ -862,6 +916,8 @@ export type UserUpdateWithoutBookmarksInput = {
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutReviewerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBookmarksInput = {
@@ -885,6 +941,240 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
+}
+
+export type UserCreateWithoutTutorHiresInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone: string
+  photo?: string | null
+  location?: string | null
+  role: $Enums.Role
+  subscriptionType?: $Enums.SubscriptionType
+  subscriptionRole?: $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Date | string | null
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  portfolio?: Prisma.TutorPortfolioCreateNestedOneWithoutUserInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutTutorInput
+  tuitions?: Prisma.TuitionCreateNestedManyWithoutParentInput
+  reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutReviewerInput
+  reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
+}
+
+export type UserUncheckedCreateWithoutTutorHiresInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone: string
+  photo?: string | null
+  location?: string | null
+  role: $Enums.Role
+  subscriptionType?: $Enums.SubscriptionType
+  subscriptionRole?: $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Date | string | null
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  portfolio?: Prisma.TutorPortfolioUncheckedCreateNestedOneWithoutUserInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTutorInput
+  tuitions?: Prisma.TuitionUncheckedCreateNestedManyWithoutParentInput
+  reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutReviewerInput
+  reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
+}
+
+export type UserCreateOrConnectWithoutTutorHiresInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTutorHiresInput, Prisma.UserUncheckedCreateWithoutTutorHiresInput>
+}
+
+export type UserCreateWithoutParentHiresInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone: string
+  photo?: string | null
+  location?: string | null
+  role: $Enums.Role
+  subscriptionType?: $Enums.SubscriptionType
+  subscriptionRole?: $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Date | string | null
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  portfolio?: Prisma.TutorPortfolioCreateNestedOneWithoutUserInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutTutorInput
+  tuitions?: Prisma.TuitionCreateNestedManyWithoutParentInput
+  reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutReviewerInput
+  reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+}
+
+export type UserUncheckedCreateWithoutParentHiresInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  phone: string
+  photo?: string | null
+  location?: string | null
+  role: $Enums.Role
+  subscriptionType?: $Enums.SubscriptionType
+  subscriptionRole?: $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Date | string | null
+  isVerified?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  portfolio?: Prisma.TutorPortfolioUncheckedCreateNestedOneWithoutUserInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTutorInput
+  tuitions?: Prisma.TuitionUncheckedCreateNestedManyWithoutParentInput
+  reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutReviewerInput
+  reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+}
+
+export type UserCreateOrConnectWithoutParentHiresInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutParentHiresInput, Prisma.UserUncheckedCreateWithoutParentHiresInput>
+}
+
+export type UserUpsertWithoutTutorHiresInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTutorHiresInput, Prisma.UserUncheckedUpdateWithoutTutorHiresInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTutorHiresInput, Prisma.UserUncheckedCreateWithoutTutorHiresInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTutorHiresInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTutorHiresInput, Prisma.UserUncheckedUpdateWithoutTutorHiresInput>
+}
+
+export type UserUpdateWithoutTutorHiresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  portfolio?: Prisma.TutorPortfolioUpdateOneWithoutUserNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutTutorNestedInput
+  tuitions?: Prisma.TuitionUpdateManyWithoutParentNestedInput
+  reviewsGiven?: Prisma.ReviewUpdateManyWithoutReviewerNestedInput
+  reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTutorHiresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  portfolio?: Prisma.TutorPortfolioUncheckedUpdateOneWithoutUserNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTutorNestedInput
+  tuitions?: Prisma.TuitionUncheckedUpdateManyWithoutParentNestedInput
+  reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
+}
+
+export type UserUpsertWithoutParentHiresInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutParentHiresInput, Prisma.UserUncheckedUpdateWithoutParentHiresInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutParentHiresInput, Prisma.UserUncheckedCreateWithoutParentHiresInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutParentHiresInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutParentHiresInput, Prisma.UserUncheckedUpdateWithoutParentHiresInput>
+}
+
+export type UserUpdateWithoutParentHiresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  portfolio?: Prisma.TutorPortfolioUpdateOneWithoutUserNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutTutorNestedInput
+  tuitions?: Prisma.TuitionUpdateManyWithoutParentNestedInput
+  reviewsGiven?: Prisma.ReviewUpdateManyWithoutReviewerNestedInput
+  reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutParentHiresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  portfolio?: Prisma.TutorPortfolioUncheckedUpdateOneWithoutUserNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTutorNestedInput
+  tuitions?: Prisma.TuitionUncheckedUpdateManyWithoutParentNestedInput
+  reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
 }
 
 export type UserCreateWithoutPaymentsInput = {
@@ -908,6 +1198,8 @@ export type UserCreateWithoutPaymentsInput = {
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutReviewerInput
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateWithoutPaymentsInput = {
@@ -931,6 +1223,8 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutReviewerInput
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserCreateOrConnectWithoutPaymentsInput = {
@@ -970,6 +1264,8 @@ export type UserUpdateWithoutPaymentsInput = {
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutReviewerNestedInput
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPaymentsInput = {
@@ -993,6 +1289,8 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type UserCreateWithoutReviewsGivenInput = {
@@ -1016,6 +1314,8 @@ export type UserCreateWithoutReviewsGivenInput = {
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateWithoutReviewsGivenInput = {
@@ -1039,6 +1339,8 @@ export type UserUncheckedCreateWithoutReviewsGivenInput = {
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserCreateOrConnectWithoutReviewsGivenInput = {
@@ -1067,6 +1369,8 @@ export type UserCreateWithoutReviewsReceivedInput = {
   reviewsGiven?: Prisma.ReviewCreateNestedManyWithoutReviewerInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateWithoutReviewsReceivedInput = {
@@ -1090,6 +1394,8 @@ export type UserUncheckedCreateWithoutReviewsReceivedInput = {
   reviewsGiven?: Prisma.ReviewUncheckedCreateNestedManyWithoutReviewerInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserCreateOrConnectWithoutReviewsReceivedInput = {
@@ -1129,6 +1435,8 @@ export type UserUpdateWithoutReviewsGivenInput = {
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsGivenInput = {
@@ -1152,6 +1460,8 @@ export type UserUncheckedUpdateWithoutReviewsGivenInput = {
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type UserUpsertWithoutReviewsReceivedInput = {
@@ -1186,6 +1496,8 @@ export type UserUpdateWithoutReviewsReceivedInput = {
   reviewsGiven?: Prisma.ReviewUpdateManyWithoutReviewerNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewsReceivedInput = {
@@ -1209,6 +1521,8 @@ export type UserUncheckedUpdateWithoutReviewsReceivedInput = {
   reviewsGiven?: Prisma.ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type UserCreateWithoutTuitionsInput = {
@@ -1232,6 +1546,8 @@ export type UserCreateWithoutTuitionsInput = {
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateWithoutTuitionsInput = {
@@ -1255,6 +1571,8 @@ export type UserUncheckedCreateWithoutTuitionsInput = {
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserCreateOrConnectWithoutTuitionsInput = {
@@ -1294,6 +1612,8 @@ export type UserUpdateWithoutTuitionsInput = {
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTuitionsInput = {
@@ -1317,6 +1637,8 @@ export type UserUncheckedUpdateWithoutTuitionsInput = {
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type UserCreateWithoutPortfolioInput = {
@@ -1340,6 +1662,8 @@ export type UserCreateWithoutPortfolioInput = {
   reviewsReceived?: Prisma.ReviewCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationCreateNestedManyWithoutParentInput
 }
 
 export type UserUncheckedCreateWithoutPortfolioInput = {
@@ -1363,6 +1687,8 @@ export type UserUncheckedCreateWithoutPortfolioInput = {
   reviewsReceived?: Prisma.ReviewUncheckedCreateNestedManyWithoutTargetInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutUserInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutUserInput
+  tutorHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTutorInput
+  parentHires?: Prisma.HireRelationUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type UserCreateOrConnectWithoutPortfolioInput = {
@@ -1402,6 +1728,8 @@ export type UserUpdateWithoutPortfolioInput = {
   reviewsReceived?: Prisma.ReviewUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUpdateManyWithoutParentNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPortfolioInput = {
@@ -1425,6 +1753,8 @@ export type UserUncheckedUpdateWithoutPortfolioInput = {
   reviewsReceived?: Prisma.ReviewUncheckedUpdateManyWithoutTargetNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutUserNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutUserNestedInput
+  tutorHires?: Prisma.HireRelationUncheckedUpdateManyWithoutTutorNestedInput
+  parentHires?: Prisma.HireRelationUncheckedUpdateManyWithoutParentNestedInput
 }
 
 
@@ -1439,6 +1769,8 @@ export type UserCountOutputType = {
   reviewsReceived: number
   bookmarks: number
   payments: number
+  tutorHires: number
+  parentHires: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1448,6 +1780,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   reviewsReceived?: boolean | UserCountOutputTypeCountReviewsReceivedArgs
   bookmarks?: boolean | UserCountOutputTypeCountBookmarksArgs
   payments?: boolean | UserCountOutputTypeCountPaymentsArgs
+  tutorHires?: boolean | UserCountOutputTypeCountTutorHiresArgs
+  parentHires?: boolean | UserCountOutputTypeCountParentHiresArgs
 }
 
 /**
@@ -1502,6 +1836,20 @@ export type UserCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.PaymentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTutorHiresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HireRelationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountParentHiresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.HireRelationWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1525,6 +1873,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   reviewsReceived?: boolean | Prisma.User$reviewsReceivedArgs<ExtArgs>
   bookmarks?: boolean | Prisma.User$bookmarksArgs<ExtArgs>
   payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  tutorHires?: boolean | Prisma.User$tutorHiresArgs<ExtArgs>
+  parentHires?: boolean | Prisma.User$parentHiresArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1588,6 +1938,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   reviewsReceived?: boolean | Prisma.User$reviewsReceivedArgs<ExtArgs>
   bookmarks?: boolean | Prisma.User$bookmarksArgs<ExtArgs>
   payments?: boolean | Prisma.User$paymentsArgs<ExtArgs>
+  tutorHires?: boolean | Prisma.User$tutorHiresArgs<ExtArgs>
+  parentHires?: boolean | Prisma.User$parentHiresArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1603,6 +1955,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     reviewsReceived: Prisma.$ReviewPayload<ExtArgs>[]
     bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
     payments: Prisma.$PaymentPayload<ExtArgs>[]
+    tutorHires: Prisma.$HireRelationPayload<ExtArgs>[]
+    parentHires: Prisma.$HireRelationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2020,6 +2374,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   reviewsReceived<T extends Prisma.User$reviewsReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bookmarks<T extends Prisma.User$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.User$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tutorHires<T extends Prisma.User$tutorHiresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tutorHiresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HireRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  parentHires<T extends Prisma.User$parentHiresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$parentHiresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HireRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2616,6 +2972,54 @@ export type User$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * User.tutorHires
+ */
+export type User$tutorHiresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the HireRelation
+   */
+  select?: Prisma.HireRelationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the HireRelation
+   */
+  omit?: Prisma.HireRelationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HireRelationInclude<ExtArgs> | null
+  where?: Prisma.HireRelationWhereInput
+  orderBy?: Prisma.HireRelationOrderByWithRelationInput | Prisma.HireRelationOrderByWithRelationInput[]
+  cursor?: Prisma.HireRelationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HireRelationScalarFieldEnum | Prisma.HireRelationScalarFieldEnum[]
+}
+
+/**
+ * User.parentHires
+ */
+export type User$parentHiresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the HireRelation
+   */
+  select?: Prisma.HireRelationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the HireRelation
+   */
+  omit?: Prisma.HireRelationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HireRelationInclude<ExtArgs> | null
+  where?: Prisma.HireRelationWhereInput
+  orderBy?: Prisma.HireRelationOrderByWithRelationInput | Prisma.HireRelationOrderByWithRelationInput[]
+  cursor?: Prisma.HireRelationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.HireRelationScalarFieldEnum | Prisma.HireRelationScalarFieldEnum[]
 }
 
 /**

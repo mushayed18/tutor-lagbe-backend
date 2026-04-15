@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './modules/Auth/auth.route';
 import userRoutes from './modules/User/user.route';
 import reviewRoutes from './modules/review/review.route';
+import tuitionRoutes from './modules/tuition/tuition.route';
 
 const app: Application = express();
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/tuitions', tuitionRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from Tutor Lagbe!');

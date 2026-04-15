@@ -386,6 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Application: 'Application',
   Bookmark: 'Bookmark',
+  HireRelation: 'HireRelation',
   Otp: 'Otp',
   Payment: 'Payment',
   Review: 'Review',
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "application" | "bookmark" | "otp" | "payment" | "review" | "tuition" | "tutorPortfolio" | "user"
+    modelProps: "application" | "bookmark" | "hireRelation" | "otp" | "payment" | "review" | "tuition" | "tutorPortfolio" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -556,6 +557,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BookmarkCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BookmarkCountAggregateOutputType> | number
+        }
+      }
+    }
+    HireRelation: {
+      payload: Prisma.$HireRelationPayload<ExtArgs>
+      fields: Prisma.HireRelationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.HireRelationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.HireRelationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>
+        }
+        findFirst: {
+          args: Prisma.HireRelationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.HireRelationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>
+        }
+        findMany: {
+          args: Prisma.HireRelationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>[]
+        }
+        create: {
+          args: Prisma.HireRelationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>
+        }
+        createMany: {
+          args: Prisma.HireRelationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.HireRelationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>[]
+        }
+        delete: {
+          args: Prisma.HireRelationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>
+        }
+        update: {
+          args: Prisma.HireRelationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>
+        }
+        deleteMany: {
+          args: Prisma.HireRelationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.HireRelationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.HireRelationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>[]
+        }
+        upsert: {
+          args: Prisma.HireRelationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HireRelationPayload>
+        }
+        aggregate: {
+          args: Prisma.HireRelationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHireRelation>
+        }
+        groupBy: {
+          args: Prisma.HireRelationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HireRelationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.HireRelationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.HireRelationCountAggregateOutputType> | number
         }
       }
     }
@@ -1062,6 +1137,17 @@ export const BookmarkScalarFieldEnum = {
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]
 
 
+export const HireRelationScalarFieldEnum = {
+  id: 'id',
+  tutorId: 'tutorId',
+  parentId: 'parentId',
+  tuitionId: 'tuitionId',
+  createdAt: 'createdAt'
+} as const
+
+export type HireRelationScalarFieldEnum = (typeof HireRelationScalarFieldEnum)[keyof typeof HireRelationScalarFieldEnum]
+
+
 export const OtpScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -1445,6 +1531,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   application?: Prisma.ApplicationOmit
   bookmark?: Prisma.BookmarkOmit
+  hireRelation?: Prisma.HireRelationOmit
   otp?: Prisma.OtpOmit
   payment?: Prisma.PaymentOmit
   review?: Prisma.ReviewOmit

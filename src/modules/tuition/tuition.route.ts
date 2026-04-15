@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTuition } from "./tuition.controller";
+import { createTuition, getAllTuitions } from "./tuition.controller";
 import { authMiddleware } from "../../middlewares/auth.middleware";
 import { requireRole } from "../../middlewares/role.middleware";
 
@@ -12,5 +12,7 @@ router.post(
   requireRole("PARENT"),
   createTuition
 );
+
+router.get("/", getAllTuitions);
 
 export default router;

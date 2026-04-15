@@ -27,4 +27,21 @@ const createTuition = async (req: Request, res: Response) => {
   }
 };
 
-export { createTuition };
+const getAllTuitions = async (req: Request, res: Response) => {
+  try {
+    const result = await TuitionService.getAllTuitions(req.query);
+
+    res.status(200).json({
+      success: true,
+      message: "Tuitions fetched successfully",
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { createTuition, getAllTuitions };

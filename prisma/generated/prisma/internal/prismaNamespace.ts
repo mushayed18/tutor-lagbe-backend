@@ -1131,7 +1131,8 @@ export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[key
 export const BookmarkScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  tuitionId: 'tuitionId'
+  tuitionId: 'tuitionId',
+  createdAt: 'createdAt'
 } as const
 
 export type BookmarkScalarFieldEnum = (typeof BookmarkScalarFieldEnum)[keyof typeof BookmarkScalarFieldEnum]

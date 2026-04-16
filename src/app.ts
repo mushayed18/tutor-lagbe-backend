@@ -5,6 +5,7 @@ import authRoutes from './modules/Auth/auth.route';
 import userRoutes from './modules/User/user.route';
 import reviewRoutes from './modules/review/review.route';
 import tuitionRoutes from './modules/tuition/tuition.route';
+import bookmarkRoutes from './modules/bookmark/bookmark.route';
 
 const app: Application = express();
 
@@ -18,14 +19,12 @@ app.use(
 );
 app.use(cookieParser());
 
-// application routes
-// app.use('/api/v1', router);
-
 // ✅ API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/tuitions', tuitionRoutes);
+app.use('/api/bookmarks', bookmarkRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from Tutor Lagbe!');

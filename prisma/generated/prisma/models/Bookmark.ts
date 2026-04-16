@@ -28,18 +28,21 @@ export type BookmarkMinAggregateOutputType = {
   id: string | null
   userId: string | null
   tuitionId: string | null
+  createdAt: Date | null
 }
 
 export type BookmarkMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   tuitionId: string | null
+  createdAt: Date | null
 }
 
 export type BookmarkCountAggregateOutputType = {
   id: number
   userId: number
   tuitionId: number
+  createdAt: number
   _all: number
 }
 
@@ -48,18 +51,21 @@ export type BookmarkMinAggregateInputType = {
   id?: true
   userId?: true
   tuitionId?: true
+  createdAt?: true
 }
 
 export type BookmarkMaxAggregateInputType = {
   id?: true
   userId?: true
   tuitionId?: true
+  createdAt?: true
 }
 
 export type BookmarkCountAggregateInputType = {
   id?: true
   userId?: true
   tuitionId?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -139,6 +145,7 @@ export type BookmarkGroupByOutputType = {
   id: string
   userId: string
   tuitionId: string
+  createdAt: Date
   _count: BookmarkCountAggregateOutputType | null
   _min: BookmarkMinAggregateOutputType | null
   _max: BookmarkMaxAggregateOutputType | null
@@ -166,6 +173,7 @@ export type BookmarkWhereInput = {
   id?: Prisma.StringFilter<"Bookmark"> | string
   userId?: Prisma.StringFilter<"Bookmark"> | string
   tuitionId?: Prisma.StringFilter<"Bookmark"> | string
+  createdAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tuition?: Prisma.XOR<Prisma.TuitionScalarRelationFilter, Prisma.TuitionWhereInput>
 }
@@ -174,6 +182,7 @@ export type BookmarkOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   tuitionId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   tuition?: Prisma.TuitionOrderByWithRelationInput
 }
@@ -186,6 +195,7 @@ export type BookmarkWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.BookmarkWhereInput | Prisma.BookmarkWhereInput[]
   userId?: Prisma.StringFilter<"Bookmark"> | string
   tuitionId?: Prisma.StringFilter<"Bookmark"> | string
+  createdAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tuition?: Prisma.XOR<Prisma.TuitionScalarRelationFilter, Prisma.TuitionWhereInput>
 }, "id" | "userId_tuitionId">
@@ -194,6 +204,7 @@ export type BookmarkOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   tuitionId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.BookmarkCountOrderByAggregateInput
   _max?: Prisma.BookmarkMaxOrderByAggregateInput
   _min?: Prisma.BookmarkMinOrderByAggregateInput
@@ -206,10 +217,12 @@ export type BookmarkScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Bookmark"> | string
   userId?: Prisma.StringWithAggregatesFilter<"Bookmark"> | string
   tuitionId?: Prisma.StringWithAggregatesFilter<"Bookmark"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Bookmark"> | Date | string
 }
 
 export type BookmarkCreateInput = {
   id?: string
+  createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutBookmarksInput
   tuition: Prisma.TuitionCreateNestedOneWithoutBookmarksInput
 }
@@ -218,10 +231,12 @@ export type BookmarkUncheckedCreateInput = {
   id?: string
   userId: string
   tuitionId: string
+  createdAt?: Date | string
 }
 
 export type BookmarkUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutBookmarksNestedInput
   tuition?: Prisma.TuitionUpdateOneRequiredWithoutBookmarksNestedInput
 }
@@ -230,22 +245,26 @@ export type BookmarkUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   tuitionId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookmarkCreateManyInput = {
   id?: string
   userId: string
   tuitionId: string
+  createdAt?: Date | string
 }
 
 export type BookmarkUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookmarkUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   tuitionId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookmarkUserIdTuitionIdCompoundUniqueInput = {
@@ -257,18 +276,21 @@ export type BookmarkCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   tuitionId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type BookmarkMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   tuitionId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type BookmarkMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   tuitionId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type BookmarkListRelationFilter = {
@@ -367,12 +389,14 @@ export type BookmarkUncheckedUpdateManyWithoutUserNestedInput = {
 
 export type BookmarkCreateWithoutTuitionInput = {
   id?: string
+  createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutBookmarksInput
 }
 
 export type BookmarkUncheckedCreateWithoutTuitionInput = {
   id?: string
   userId: string
+  createdAt?: Date | string
 }
 
 export type BookmarkCreateOrConnectWithoutTuitionInput = {
@@ -408,16 +432,19 @@ export type BookmarkScalarWhereInput = {
   id?: Prisma.StringFilter<"Bookmark"> | string
   userId?: Prisma.StringFilter<"Bookmark"> | string
   tuitionId?: Prisma.StringFilter<"Bookmark"> | string
+  createdAt?: Prisma.DateTimeFilter<"Bookmark"> | Date | string
 }
 
 export type BookmarkCreateWithoutUserInput = {
   id?: string
+  createdAt?: Date | string
   tuition: Prisma.TuitionCreateNestedOneWithoutBookmarksInput
 }
 
 export type BookmarkUncheckedCreateWithoutUserInput = {
   id?: string
   tuitionId: string
+  createdAt?: Date | string
 }
 
 export type BookmarkCreateOrConnectWithoutUserInput = {
@@ -449,41 +476,49 @@ export type BookmarkUpdateManyWithWhereWithoutUserInput = {
 export type BookmarkCreateManyTuitionInput = {
   id?: string
   userId: string
+  createdAt?: Date | string
 }
 
 export type BookmarkUpdateWithoutTuitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutBookmarksNestedInput
 }
 
 export type BookmarkUncheckedUpdateWithoutTuitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookmarkUncheckedUpdateManyWithoutTuitionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookmarkCreateManyUserInput = {
   id?: string
   tuitionId: string
+  createdAt?: Date | string
 }
 
 export type BookmarkUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tuition?: Prisma.TuitionUpdateOneRequiredWithoutBookmarksNestedInput
 }
 
 export type BookmarkUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tuitionId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BookmarkUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   tuitionId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -492,6 +527,7 @@ export type BookmarkSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   userId?: boolean
   tuitionId?: boolean
+  createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tuition?: boolean | Prisma.TuitionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["bookmark"]>
@@ -500,6 +536,7 @@ export type BookmarkSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   userId?: boolean
   tuitionId?: boolean
+  createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tuition?: boolean | Prisma.TuitionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["bookmark"]>
@@ -508,6 +545,7 @@ export type BookmarkSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   userId?: boolean
   tuitionId?: boolean
+  createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tuition?: boolean | Prisma.TuitionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["bookmark"]>
@@ -516,9 +554,10 @@ export type BookmarkSelectScalar = {
   id?: boolean
   userId?: boolean
   tuitionId?: boolean
+  createdAt?: boolean
 }
 
-export type BookmarkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tuitionId", ExtArgs["result"]["bookmark"]>
+export type BookmarkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tuitionId" | "createdAt", ExtArgs["result"]["bookmark"]>
 export type BookmarkInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tuition?: boolean | Prisma.TuitionDefaultArgs<ExtArgs>
@@ -542,6 +581,7 @@ export type $BookmarkPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: string
     userId: string
     tuitionId: string
+    createdAt: Date
   }, ExtArgs["result"]["bookmark"]>
   composites: {}
 }
@@ -970,6 +1010,7 @@ export interface BookmarkFieldRefs {
   readonly id: Prisma.FieldRef<"Bookmark", 'String'>
   readonly userId: Prisma.FieldRef<"Bookmark", 'String'>
   readonly tuitionId: Prisma.FieldRef<"Bookmark", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Bookmark", 'DateTime'>
 }
     
 

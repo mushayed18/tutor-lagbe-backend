@@ -1199,7 +1199,6 @@ export const TuitionScalarFieldEnum = {
   location: 'location',
   daysPerWeek: 'daysPerWeek',
   timeSlot: 'timeSlot',
-  isFeatured: 'isFeatured',
   status: 'status',
   createdAt: 'createdAt'
 } as const
@@ -1373,13 +1372,6 @@ export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'TuitionStatus'
  */
 export type EnumTuitionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TuitionStatus'>
@@ -1418,6 +1410,13 @@ export type EnumSubscriptionRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'SubscriptionRole[]'
  */
 export type ListEnumSubscriptionRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

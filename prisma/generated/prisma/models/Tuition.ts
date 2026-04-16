@@ -47,7 +47,6 @@ export type TuitionMinAggregateOutputType = {
   location: string | null
   daysPerWeek: number | null
   timeSlot: string | null
-  isFeatured: boolean | null
   status: $Enums.TuitionStatus | null
   createdAt: Date | null
 }
@@ -63,7 +62,6 @@ export type TuitionMaxAggregateOutputType = {
   location: string | null
   daysPerWeek: number | null
   timeSlot: string | null
-  isFeatured: boolean | null
   status: $Enums.TuitionStatus | null
   createdAt: Date | null
 }
@@ -79,7 +77,6 @@ export type TuitionCountAggregateOutputType = {
   location: number
   daysPerWeek: number
   timeSlot: number
-  isFeatured: number
   status: number
   createdAt: number
   _all: number
@@ -107,7 +104,6 @@ export type TuitionMinAggregateInputType = {
   location?: true
   daysPerWeek?: true
   timeSlot?: true
-  isFeatured?: true
   status?: true
   createdAt?: true
 }
@@ -123,7 +119,6 @@ export type TuitionMaxAggregateInputType = {
   location?: true
   daysPerWeek?: true
   timeSlot?: true
-  isFeatured?: true
   status?: true
   createdAt?: true
 }
@@ -139,7 +134,6 @@ export type TuitionCountAggregateInputType = {
   location?: true
   daysPerWeek?: true
   timeSlot?: true
-  isFeatured?: true
   status?: true
   createdAt?: true
   _all?: true
@@ -242,7 +236,6 @@ export type TuitionGroupByOutputType = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured: boolean
   status: $Enums.TuitionStatus
   createdAt: Date
   _count: TuitionCountAggregateOutputType | null
@@ -281,7 +274,6 @@ export type TuitionWhereInput = {
   location?: Prisma.StringFilter<"Tuition"> | string
   daysPerWeek?: Prisma.IntFilter<"Tuition"> | number
   timeSlot?: Prisma.StringFilter<"Tuition"> | string
-  isFeatured?: Prisma.BoolFilter<"Tuition"> | boolean
   status?: Prisma.EnumTuitionStatusFilter<"Tuition"> | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFilter<"Tuition"> | Date | string
   parent?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -301,7 +293,6 @@ export type TuitionOrderByWithRelationInput = {
   location?: Prisma.SortOrder
   daysPerWeek?: Prisma.SortOrder
   timeSlot?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   parent?: Prisma.UserOrderByWithRelationInput
@@ -324,7 +315,6 @@ export type TuitionWhereUniqueInput = Prisma.AtLeast<{
   location?: Prisma.StringFilter<"Tuition"> | string
   daysPerWeek?: Prisma.IntFilter<"Tuition"> | number
   timeSlot?: Prisma.StringFilter<"Tuition"> | string
-  isFeatured?: Prisma.BoolFilter<"Tuition"> | boolean
   status?: Prisma.EnumTuitionStatusFilter<"Tuition"> | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFilter<"Tuition"> | Date | string
   parent?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -344,7 +334,6 @@ export type TuitionOrderByWithAggregationInput = {
   location?: Prisma.SortOrder
   daysPerWeek?: Prisma.SortOrder
   timeSlot?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.TuitionCountOrderByAggregateInput
@@ -368,7 +357,6 @@ export type TuitionScalarWhereWithAggregatesInput = {
   location?: Prisma.StringWithAggregatesFilter<"Tuition"> | string
   daysPerWeek?: Prisma.IntWithAggregatesFilter<"Tuition"> | number
   timeSlot?: Prisma.StringWithAggregatesFilter<"Tuition"> | string
-  isFeatured?: Prisma.BoolWithAggregatesFilter<"Tuition"> | boolean
   status?: Prisma.EnumTuitionStatusWithAggregatesFilter<"Tuition"> | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tuition"> | Date | string
 }
@@ -383,7 +371,6 @@ export type TuitionCreateInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
@@ -403,7 +390,6 @@ export type TuitionUncheckedCreateInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
@@ -421,7 +407,6 @@ export type TuitionUpdateInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
@@ -441,7 +426,6 @@ export type TuitionUncheckedUpdateInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
@@ -460,7 +444,6 @@ export type TuitionCreateManyInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
 }
@@ -475,7 +458,6 @@ export type TuitionUpdateManyMutationInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -491,7 +473,6 @@ export type TuitionUncheckedUpdateManyInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -512,7 +493,6 @@ export type TuitionCountOrderByAggregateInput = {
   location?: Prisma.SortOrder
   daysPerWeek?: Prisma.SortOrder
   timeSlot?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -533,7 +513,6 @@ export type TuitionMaxOrderByAggregateInput = {
   location?: Prisma.SortOrder
   daysPerWeek?: Prisma.SortOrder
   timeSlot?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -549,7 +528,6 @@ export type TuitionMinOrderByAggregateInput = {
   location?: Prisma.SortOrder
   daysPerWeek?: Prisma.SortOrder
   timeSlot?: Prisma.SortOrder
-  isFeatured?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -611,10 +589,6 @@ export type TuitionUpdateOneRequiredWithoutHireRelationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TuitionUpdateToOneWithWhereWithoutHireRelationsInput, Prisma.TuitionUpdateWithoutHireRelationsInput>, Prisma.TuitionUncheckedUpdateWithoutHireRelationsInput>
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type EnumTuitionStatusFieldUpdateOperationsInput = {
   set?: $Enums.TuitionStatus
 }
@@ -671,7 +645,6 @@ export type TuitionCreateWithoutApplicationsInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
@@ -690,7 +663,6 @@ export type TuitionUncheckedCreateWithoutApplicationsInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTuitionInput
@@ -723,7 +695,6 @@ export type TuitionUpdateWithoutApplicationsInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
@@ -742,7 +713,6 @@ export type TuitionUncheckedUpdateWithoutApplicationsInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutTuitionNestedInput
@@ -759,7 +729,6 @@ export type TuitionCreateWithoutBookmarksInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
@@ -778,7 +747,6 @@ export type TuitionUncheckedCreateWithoutBookmarksInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
@@ -811,7 +779,6 @@ export type TuitionUpdateWithoutBookmarksInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
@@ -830,7 +797,6 @@ export type TuitionUncheckedUpdateWithoutBookmarksInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
@@ -847,7 +813,6 @@ export type TuitionCreateWithoutHireRelationsInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
@@ -866,7 +831,6 @@ export type TuitionUncheckedCreateWithoutHireRelationsInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
@@ -899,7 +863,6 @@ export type TuitionUpdateWithoutHireRelationsInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
@@ -918,7 +881,6 @@ export type TuitionUncheckedUpdateWithoutHireRelationsInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
@@ -935,7 +897,6 @@ export type TuitionCreateWithoutParentInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   applications?: Prisma.ApplicationCreateNestedManyWithoutTuitionInput
@@ -953,7 +914,6 @@ export type TuitionUncheckedCreateWithoutParentInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
@@ -1001,7 +961,6 @@ export type TuitionScalarWhereInput = {
   location?: Prisma.StringFilter<"Tuition"> | string
   daysPerWeek?: Prisma.IntFilter<"Tuition"> | number
   timeSlot?: Prisma.StringFilter<"Tuition"> | string
-  isFeatured?: Prisma.BoolFilter<"Tuition"> | boolean
   status?: Prisma.EnumTuitionStatusFilter<"Tuition"> | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFilter<"Tuition"> | Date | string
 }
@@ -1016,7 +975,6 @@ export type TuitionCreateManyParentInput = {
   location: string
   daysPerWeek: number
   timeSlot: string
-  isFeatured?: boolean
   status?: $Enums.TuitionStatus
   createdAt?: Date | string
 }
@@ -1031,7 +989,6 @@ export type TuitionUpdateWithoutParentInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUpdateManyWithoutTuitionNestedInput
@@ -1049,7 +1006,6 @@ export type TuitionUncheckedUpdateWithoutParentInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
@@ -1067,7 +1023,6 @@ export type TuitionUncheckedUpdateManyWithoutParentInput = {
   location?: Prisma.StringFieldUpdateOperationsInput | string
   daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
   timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
-  isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1132,7 +1087,6 @@ export type TuitionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   location?: boolean
   daysPerWeek?: boolean
   timeSlot?: boolean
-  isFeatured?: boolean
   status?: boolean
   createdAt?: boolean
   parent?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1153,7 +1107,6 @@ export type TuitionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   location?: boolean
   daysPerWeek?: boolean
   timeSlot?: boolean
-  isFeatured?: boolean
   status?: boolean
   createdAt?: boolean
   parent?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1170,7 +1123,6 @@ export type TuitionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   location?: boolean
   daysPerWeek?: boolean
   timeSlot?: boolean
-  isFeatured?: boolean
   status?: boolean
   createdAt?: boolean
   parent?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1187,12 +1139,11 @@ export type TuitionSelectScalar = {
   location?: boolean
   daysPerWeek?: boolean
   timeSlot?: boolean
-  isFeatured?: boolean
   status?: boolean
   createdAt?: boolean
 }
 
-export type TuitionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "parentId" | "title" | "description" | "subject" | "classLevel" | "salary" | "location" | "daysPerWeek" | "timeSlot" | "isFeatured" | "status" | "createdAt", ExtArgs["result"]["tuition"]>
+export type TuitionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "parentId" | "title" | "description" | "subject" | "classLevel" | "salary" | "location" | "daysPerWeek" | "timeSlot" | "status" | "createdAt", ExtArgs["result"]["tuition"]>
 export type TuitionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   parent?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   applications?: boolean | Prisma.Tuition$applicationsArgs<ExtArgs>
@@ -1230,7 +1181,6 @@ export type $TuitionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     location: string
     daysPerWeek: number
     timeSlot: string
-    isFeatured: boolean
     status: $Enums.TuitionStatus
     createdAt: Date
   }, ExtArgs["result"]["tuition"]>
@@ -1670,7 +1620,6 @@ export interface TuitionFieldRefs {
   readonly location: Prisma.FieldRef<"Tuition", 'String'>
   readonly daysPerWeek: Prisma.FieldRef<"Tuition", 'Int'>
   readonly timeSlot: Prisma.FieldRef<"Tuition", 'String'>
-  readonly isFeatured: Prisma.FieldRef<"Tuition", 'Boolean'>
   readonly status: Prisma.FieldRef<"Tuition", 'TuitionStatus'>
   readonly createdAt: Prisma.FieldRef<"Tuition", 'DateTime'>
 }

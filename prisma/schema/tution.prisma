@@ -13,8 +13,6 @@ model Tuition {
   daysPerWeek Int
   timeSlot    String
 
-  isFeatured Boolean @default(false)
-
   status TuitionStatus @default(OPEN)
 
   createdAt DateTime @default(now())

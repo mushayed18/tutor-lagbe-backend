@@ -160,7 +160,6 @@ export const TuitionScalarFieldEnum = {
   location: 'location',
   daysPerWeek: 'daysPerWeek',
   timeSlot: 'timeSlot',
-  isFeatured: 'isFeatured',
   status: 'status',
   createdAt: 'createdAt'
 } as const

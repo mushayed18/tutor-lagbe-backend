@@ -33,6 +33,11 @@ export type Bookmark = Prisma.BookmarkModel
  */
 export type HireRelation = Prisma.HireRelationModel
 /**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
  * Model Otp
  * 
  */

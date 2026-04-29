@@ -41,4 +41,6 @@ model User {
 
   tutorHires  HireRelation[] @relation("TutorHire")
   parentHires HireRelation[] @relation("ParentHire")
+
+  notifications Notification[]
 }

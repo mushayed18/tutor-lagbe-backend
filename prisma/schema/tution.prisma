@@ -28,4 +28,6 @@ model Tuition {
   bookmarks Bookmark[]
 
   hireRelations HireRelation[]
+
+  notifications Notification[]
 }

@@ -43,6 +43,16 @@ const applyToTuition = async (requester: AuthUser, tuitionId: string) => {
     },
   });
 
+  await prisma.notification.create({
+    data: {
+      userId: tuition.parentId,
+      tuitionId: tuition.id,
+      title: "New Application",
+      message: "A tutor applied to your tuition",
+      type: "APPLY",
+    },
+  });
+
   return application;
 };
 
@@ -82,10 +92,18 @@ const getMyApplications = async (
     createdAt: app.createdAt,
   }));
 
+  const total = await prisma.application.count({
+    where: {
+      tutorId: requester.id,
+    },
+  });
+
   return {
     meta: {
       page,
       limit,
+      total,
+      totalPages: Math.ceil(total / limit),
       count: result.length,
     },
     data: result,
@@ -192,10 +210,22 @@ const updateApplicationStatus = async (
 
     // 4. If REJECT → simple update
     if (status === "REJECTED") {
-      return await tx.application.update({
+      const updated = await tx.application.update({
         where: { id: applicationId },
         data: { status: "REJECTED" },
       });
+
+      await tx.notification.create({
+        data: {
+          userId: application.tutorId,
+          tuitionId: application.tuitionId,
+          title: "Application Rejected",
+          message: "Your application was rejected",
+          type: "REJECTED",
+        },
+      });
+
+      return updated;
     }
 
     // 5. If HIRED → full flow
@@ -230,7 +260,44 @@ const updateApplicationStatus = async (
       },
     });
 
-    return { message: "Tutor hired successfully" };
+    await tx.notification.create({
+      data: {
+        userId: application.tutorId,
+        tuitionId: application.tuitionId,
+
+        title: "You are hired 🎉",
+        message: "You have been selected for a tuition",
+        type: "HIRED",
+      },
+    });
+
+    const rejectedApplications = await tx.application.findMany({
+      where: {
+        tuitionId: application.tuitionId,
+        id: { not: applicationId },
+      },
+      select: {
+        tutorId: true,
+      },
+    });
+
+    const rejectedTutorIds = rejectedApplications.map((app) => app.tutorId);
+
+    await tx.notification.createMany({
+      data: rejectedTutorIds.map((id) => ({
+        userId: id,
+        tuitionId: application.tuitionId,
+
+        title: "Application Rejected",
+        message: "Your application was rejected",
+        type: "REJECTED",
+      })),
+    });
+
+    return {
+      message: "Tutor hired successfully",
+      hiredTutorId: application.tutorId,
+    };
   });
 };
 

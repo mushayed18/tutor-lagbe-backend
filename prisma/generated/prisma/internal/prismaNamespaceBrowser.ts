@@ -54,6 +54,7 @@ export const ModelName = {
   Application: 'Application',
   Bookmark: 'Bookmark',
   HireRelation: 'HireRelation',
+  Notification: 'Notification',
   Otp: 'Otp',
   Payment: 'Payment',
   Review: 'Review',
@@ -108,6 +109,19 @@ export const HireRelationScalarFieldEnum = {
 } as const
 
 export type HireRelationScalarFieldEnum = (typeof HireRelationScalarFieldEnum)[keyof typeof HireRelationScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tuitionId: 'tuitionId',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const OtpScalarFieldEnum = {

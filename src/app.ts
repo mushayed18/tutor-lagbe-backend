@@ -7,6 +7,7 @@ import reviewRoutes from './modules/review/review.route';
 import tuitionRoutes from './modules/tuition/tuition.route';
 import bookmarkRoutes from './modules/bookmark/bookmark.route';
 import applicationRoutes from './modules/application/application.route';
+import notificationRoutes from './modules/notification/notification.route';
 
 const app: Application = express();
 
@@ -27,6 +28,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/tuitions', tuitionRoutes);
 app.use('/api/bookmarks', bookmarkRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from Tutor Lagbe!');

@@ -11,6 +11,7 @@
 export type * from './models/Application'
 export type * from './models/Bookmark'
 export type * from './models/HireRelation'
+export type * from './models/Notification'
 export type * from './models/Otp'
 export type * from './models/Payment'
 export type * from './models/Review'

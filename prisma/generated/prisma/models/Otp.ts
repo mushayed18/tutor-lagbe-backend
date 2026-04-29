@@ -415,10 +415,6 @@ export type OtpMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type NullableEnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role | null
 }

@@ -34,3 +34,9 @@ enum PaymentStatus {
   SUCCESS
   FAILED
 }
+
+enum NotificationType {
+  APPLY
+  HIRED
+  REJECTED
+}

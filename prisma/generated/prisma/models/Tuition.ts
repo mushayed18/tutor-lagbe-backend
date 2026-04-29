@@ -280,6 +280,7 @@ export type TuitionWhereInput = {
   applications?: Prisma.ApplicationListRelationFilter
   bookmarks?: Prisma.BookmarkListRelationFilter
   hireRelations?: Prisma.HireRelationListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }
 
 export type TuitionOrderByWithRelationInput = {
@@ -299,6 +300,7 @@ export type TuitionOrderByWithRelationInput = {
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
   bookmarks?: Prisma.BookmarkOrderByRelationAggregateInput
   hireRelations?: Prisma.HireRelationOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationOrderByRelationAggregateInput
 }
 
 export type TuitionWhereUniqueInput = Prisma.AtLeast<{
@@ -321,6 +323,7 @@ export type TuitionWhereUniqueInput = Prisma.AtLeast<{
   applications?: Prisma.ApplicationListRelationFilter
   bookmarks?: Prisma.BookmarkListRelationFilter
   hireRelations?: Prisma.HireRelationListRelationFilter
+  notifications?: Prisma.NotificationListRelationFilter
 }, "id">
 
 export type TuitionOrderByWithAggregationInput = {
@@ -377,6 +380,7 @@ export type TuitionCreateInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutTuitionInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionUncheckedCreateInput = {
@@ -395,6 +399,7 @@ export type TuitionUncheckedCreateInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionUpdateInput = {
@@ -413,6 +418,7 @@ export type TuitionUpdateInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutTuitionNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionUncheckedUpdateInput = {
@@ -431,6 +437,7 @@ export type TuitionUncheckedUpdateInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUncheckedUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionCreateManyInput = {
@@ -480,6 +487,11 @@ export type TuitionUncheckedUpdateManyInput = {
 export type TuitionScalarRelationFilter = {
   is?: Prisma.TuitionWhereInput
   isNot?: Prisma.TuitionWhereInput
+}
+
+export type TuitionNullableScalarRelationFilter = {
+  is?: Prisma.TuitionWhereInput | null
+  isNot?: Prisma.TuitionWhereInput | null
 }
 
 export type TuitionCountOrderByAggregateInput = {
@@ -589,6 +601,22 @@ export type TuitionUpdateOneRequiredWithoutHireRelationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TuitionUpdateToOneWithWhereWithoutHireRelationsInput, Prisma.TuitionUpdateWithoutHireRelationsInput>, Prisma.TuitionUncheckedUpdateWithoutHireRelationsInput>
 }
 
+export type TuitionCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.TuitionCreateWithoutNotificationsInput, Prisma.TuitionUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.TuitionCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.TuitionWhereUniqueInput
+}
+
+export type TuitionUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.TuitionCreateWithoutNotificationsInput, Prisma.TuitionUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.TuitionCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.TuitionUpsertWithoutNotificationsInput
+  disconnect?: Prisma.TuitionWhereInput | boolean
+  delete?: Prisma.TuitionWhereInput | boolean
+  connect?: Prisma.TuitionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TuitionUpdateToOneWithWhereWithoutNotificationsInput, Prisma.TuitionUpdateWithoutNotificationsInput>, Prisma.TuitionUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type EnumTuitionStatusFieldUpdateOperationsInput = {
   set?: $Enums.TuitionStatus
 }
@@ -650,6 +678,7 @@ export type TuitionCreateWithoutApplicationsInput = {
   parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionUncheckedCreateWithoutApplicationsInput = {
@@ -667,6 +696,7 @@ export type TuitionUncheckedCreateWithoutApplicationsInput = {
   createdAt?: Date | string
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionCreateOrConnectWithoutApplicationsInput = {
@@ -700,6 +730,7 @@ export type TuitionUpdateWithoutApplicationsInput = {
   parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionUncheckedUpdateWithoutApplicationsInput = {
@@ -717,6 +748,7 @@ export type TuitionUncheckedUpdateWithoutApplicationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUncheckedUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionCreateWithoutBookmarksInput = {
@@ -734,6 +766,7 @@ export type TuitionCreateWithoutBookmarksInput = {
   parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionUncheckedCreateWithoutBookmarksInput = {
@@ -751,6 +784,7 @@ export type TuitionUncheckedCreateWithoutBookmarksInput = {
   createdAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionCreateOrConnectWithoutBookmarksInput = {
@@ -784,6 +818,7 @@ export type TuitionUpdateWithoutBookmarksInput = {
   parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionUncheckedUpdateWithoutBookmarksInput = {
@@ -801,6 +836,7 @@ export type TuitionUncheckedUpdateWithoutBookmarksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUncheckedUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionCreateWithoutHireRelationsInput = {
@@ -818,6 +854,7 @@ export type TuitionCreateWithoutHireRelationsInput = {
   parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
   applications?: Prisma.ApplicationCreateNestedManyWithoutTuitionInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionUncheckedCreateWithoutHireRelationsInput = {
@@ -835,6 +872,7 @@ export type TuitionUncheckedCreateWithoutHireRelationsInput = {
   createdAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionCreateOrConnectWithoutHireRelationsInput = {
@@ -868,6 +906,7 @@ export type TuitionUpdateWithoutHireRelationsInput = {
   parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
   applications?: Prisma.ApplicationUpdateManyWithoutTuitionNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionUncheckedUpdateWithoutHireRelationsInput = {
@@ -885,6 +924,95 @@ export type TuitionUncheckedUpdateWithoutHireRelationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTuitionNestedInput
+}
+
+export type TuitionCreateWithoutNotificationsInput = {
+  id?: string
+  title: string
+  description: string
+  subject: string
+  classLevel: string
+  salary: number
+  location: string
+  daysPerWeek: number
+  timeSlot: string
+  status?: $Enums.TuitionStatus
+  createdAt?: Date | string
+  parent: Prisma.UserCreateNestedOneWithoutTuitionsInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutTuitionInput
+  bookmarks?: Prisma.BookmarkCreateNestedManyWithoutTuitionInput
+  hireRelations?: Prisma.HireRelationCreateNestedManyWithoutTuitionInput
+}
+
+export type TuitionUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  parentId: string
+  title: string
+  description: string
+  subject: string
+  classLevel: string
+  salary: number
+  location: string
+  daysPerWeek: number
+  timeSlot: string
+  status?: $Enums.TuitionStatus
+  createdAt?: Date | string
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
+  bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTuitionInput
+  hireRelations?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTuitionInput
+}
+
+export type TuitionCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.TuitionWhereUniqueInput
+  create: Prisma.XOR<Prisma.TuitionCreateWithoutNotificationsInput, Prisma.TuitionUncheckedCreateWithoutNotificationsInput>
+}
+
+export type TuitionUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.TuitionUpdateWithoutNotificationsInput, Prisma.TuitionUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.TuitionCreateWithoutNotificationsInput, Prisma.TuitionUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.TuitionWhereInput
+}
+
+export type TuitionUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.TuitionWhereInput
+  data: Prisma.XOR<Prisma.TuitionUpdateWithoutNotificationsInput, Prisma.TuitionUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type TuitionUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  classLevel?: Prisma.StringFieldUpdateOperationsInput | string
+  salary?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
+  timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parent?: Prisma.UserUpdateOneRequiredWithoutTuitionsNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutTuitionNestedInput
+  bookmarks?: Prisma.BookmarkUpdateManyWithoutTuitionNestedInput
+  hireRelations?: Prisma.HireRelationUpdateManyWithoutTuitionNestedInput
+}
+
+export type TuitionUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  parentId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  subject?: Prisma.StringFieldUpdateOperationsInput | string
+  classLevel?: Prisma.StringFieldUpdateOperationsInput | string
+  salary?: Prisma.IntFieldUpdateOperationsInput | number
+  location?: Prisma.StringFieldUpdateOperationsInput | string
+  daysPerWeek?: Prisma.IntFieldUpdateOperationsInput | number
+  timeSlot?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTuitionStatusFieldUpdateOperationsInput | $Enums.TuitionStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
+  bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutTuitionNestedInput
+  hireRelations?: Prisma.HireRelationUncheckedUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionCreateWithoutParentInput = {
@@ -902,6 +1030,7 @@ export type TuitionCreateWithoutParentInput = {
   applications?: Prisma.ApplicationCreateNestedManyWithoutTuitionInput
   bookmarks?: Prisma.BookmarkCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionUncheckedCreateWithoutParentInput = {
@@ -919,6 +1048,7 @@ export type TuitionUncheckedCreateWithoutParentInput = {
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutTuitionInput
   bookmarks?: Prisma.BookmarkUncheckedCreateNestedManyWithoutTuitionInput
   hireRelations?: Prisma.HireRelationUncheckedCreateNestedManyWithoutTuitionInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTuitionInput
 }
 
 export type TuitionCreateOrConnectWithoutParentInput = {
@@ -994,6 +1124,7 @@ export type TuitionUpdateWithoutParentInput = {
   applications?: Prisma.ApplicationUpdateManyWithoutTuitionNestedInput
   bookmarks?: Prisma.BookmarkUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionUncheckedUpdateWithoutParentInput = {
@@ -1011,6 +1142,7 @@ export type TuitionUncheckedUpdateWithoutParentInput = {
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutTuitionNestedInput
   bookmarks?: Prisma.BookmarkUncheckedUpdateManyWithoutTuitionNestedInput
   hireRelations?: Prisma.HireRelationUncheckedUpdateManyWithoutTuitionNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTuitionNestedInput
 }
 
 export type TuitionUncheckedUpdateManyWithoutParentInput = {
@@ -1036,12 +1168,14 @@ export type TuitionCountOutputType = {
   applications: number
   bookmarks: number
   hireRelations: number
+  notifications: number
 }
 
 export type TuitionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   applications?: boolean | TuitionCountOutputTypeCountApplicationsArgs
   bookmarks?: boolean | TuitionCountOutputTypeCountBookmarksArgs
   hireRelations?: boolean | TuitionCountOutputTypeCountHireRelationsArgs
+  notifications?: boolean | TuitionCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -1075,6 +1209,13 @@ export type TuitionCountOutputTypeCountHireRelationsArgs<ExtArgs extends runtime
   where?: Prisma.HireRelationWhereInput
 }
 
+/**
+ * TuitionCountOutputType without action
+ */
+export type TuitionCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationWhereInput
+}
+
 
 export type TuitionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1093,6 +1234,7 @@ export type TuitionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   applications?: boolean | Prisma.Tuition$applicationsArgs<ExtArgs>
   bookmarks?: boolean | Prisma.Tuition$bookmarksArgs<ExtArgs>
   hireRelations?: boolean | Prisma.Tuition$hireRelationsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Tuition$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.TuitionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tuition"]>
 
@@ -1149,6 +1291,7 @@ export type TuitionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   applications?: boolean | Prisma.Tuition$applicationsArgs<ExtArgs>
   bookmarks?: boolean | Prisma.Tuition$bookmarksArgs<ExtArgs>
   hireRelations?: boolean | Prisma.Tuition$hireRelationsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Tuition$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.TuitionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TuitionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1169,6 +1312,7 @@ export type $TuitionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     applications: Prisma.$ApplicationPayload<ExtArgs>[]
     bookmarks: Prisma.$BookmarkPayload<ExtArgs>[]
     hireRelations: Prisma.$HireRelationPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1581,6 +1725,7 @@ export interface Prisma__TuitionClient<T, Null = never, ExtArgs extends runtime.
   applications<T extends Prisma.Tuition$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tuition$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bookmarks<T extends Prisma.Tuition$bookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tuition$bookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   hireRelations<T extends Prisma.Tuition$hireRelationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tuition$hireRelationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HireRelationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Tuition$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tuition$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2092,6 +2237,30 @@ export type Tuition$hireRelationsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.HireRelationScalarFieldEnum | Prisma.HireRelationScalarFieldEnum[]
+}
+
+/**
+ * Tuition.notifications
+ */
+export type Tuition$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notification
+   */
+  select?: Prisma.NotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notification
+   */
+  omit?: Prisma.NotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationInclude<ExtArgs> | null
+  where?: Prisma.NotificationWhereInput
+  orderBy?: Prisma.NotificationOrderByWithRelationInput | Prisma.NotificationOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
 }
 
 /**

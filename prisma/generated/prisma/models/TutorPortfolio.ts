@@ -42,6 +42,8 @@ export type TutorPortfolioMinAggregateOutputType = {
   university: string | null
   department: string | null
   experience: string | null
+  subjects: string | null
+  preferredClasses: string | null
   expectedSalary: number | null
   availability: string | null
 }
@@ -54,6 +56,8 @@ export type TutorPortfolioMaxAggregateOutputType = {
   university: string | null
   department: string | null
   experience: string | null
+  subjects: string | null
+  preferredClasses: string | null
   expectedSalary: number | null
   availability: string | null
 }
@@ -90,6 +94,8 @@ export type TutorPortfolioMinAggregateInputType = {
   university?: true
   department?: true
   experience?: true
+  subjects?: true
+  preferredClasses?: true
   expectedSalary?: true
   availability?: true
 }
@@ -102,6 +108,8 @@ export type TutorPortfolioMaxAggregateInputType = {
   university?: true
   department?: true
   experience?: true
+  subjects?: true
+  preferredClasses?: true
   expectedSalary?: true
   availability?: true
 }
@@ -215,8 +223,8 @@ export type TutorPortfolioGroupByOutputType = {
   university: string
   department: string
   experience: string
-  subjects: string[]
-  preferredClasses: string[]
+  subjects: string
+  preferredClasses: string
   expectedSalary: number
   availability: string
   _count: TutorPortfolioCountAggregateOutputType | null
@@ -252,8 +260,8 @@ export type TutorPortfolioWhereInput = {
   university?: Prisma.StringFilter<"TutorPortfolio"> | string
   department?: Prisma.StringFilter<"TutorPortfolio"> | string
   experience?: Prisma.StringFilter<"TutorPortfolio"> | string
-  subjects?: Prisma.StringNullableListFilter<"TutorPortfolio">
-  preferredClasses?: Prisma.StringNullableListFilter<"TutorPortfolio">
+  subjects?: Prisma.StringFilter<"TutorPortfolio"> | string
+  preferredClasses?: Prisma.StringFilter<"TutorPortfolio"> | string
   expectedSalary?: Prisma.IntFilter<"TutorPortfolio"> | number
   availability?: Prisma.StringFilter<"TutorPortfolio"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -285,8 +293,8 @@ export type TutorPortfolioWhereUniqueInput = Prisma.AtLeast<{
   university?: Prisma.StringFilter<"TutorPortfolio"> | string
   department?: Prisma.StringFilter<"TutorPortfolio"> | string
   experience?: Prisma.StringFilter<"TutorPortfolio"> | string
-  subjects?: Prisma.StringNullableListFilter<"TutorPortfolio">
-  preferredClasses?: Prisma.StringNullableListFilter<"TutorPortfolio">
+  subjects?: Prisma.StringFilter<"TutorPortfolio"> | string
+  preferredClasses?: Prisma.StringFilter<"TutorPortfolio"> | string
   expectedSalary?: Prisma.IntFilter<"TutorPortfolio"> | number
   availability?: Prisma.StringFilter<"TutorPortfolio"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -322,8 +330,8 @@ export type TutorPortfolioScalarWhereWithAggregatesInput = {
   university?: Prisma.StringWithAggregatesFilter<"TutorPortfolio"> | string
   department?: Prisma.StringWithAggregatesFilter<"TutorPortfolio"> | string
   experience?: Prisma.StringWithAggregatesFilter<"TutorPortfolio"> | string
-  subjects?: Prisma.StringNullableListFilter<"TutorPortfolio">
-  preferredClasses?: Prisma.StringNullableListFilter<"TutorPortfolio">
+  subjects?: Prisma.StringWithAggregatesFilter<"TutorPortfolio"> | string
+  preferredClasses?: Prisma.StringWithAggregatesFilter<"TutorPortfolio"> | string
   expectedSalary?: Prisma.IntWithAggregatesFilter<"TutorPortfolio"> | number
   availability?: Prisma.StringWithAggregatesFilter<"TutorPortfolio"> | string
 }
@@ -335,8 +343,8 @@ export type TutorPortfolioCreateInput = {
   university: string
   department: string
   experience: string
-  subjects?: Prisma.TutorPortfolioCreatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioCreatepreferredClassesInput | string[]
+  subjects: string
+  preferredClasses: string
   expectedSalary: number
   availability: string
   user: Prisma.UserCreateNestedOneWithoutPortfolioInput
@@ -350,8 +358,8 @@ export type TutorPortfolioUncheckedCreateInput = {
   university: string
   department: string
   experience: string
-  subjects?: Prisma.TutorPortfolioCreatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioCreatepreferredClassesInput | string[]
+  subjects: string
+  preferredClasses: string
   expectedSalary: number
   availability: string
 }
@@ -363,8 +371,8 @@ export type TutorPortfolioUpdateInput = {
   university?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  subjects?: Prisma.TutorPortfolioUpdatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioUpdatepreferredClassesInput | string[]
+  subjects?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredClasses?: Prisma.StringFieldUpdateOperationsInput | string
   expectedSalary?: Prisma.IntFieldUpdateOperationsInput | number
   availability?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutPortfolioNestedInput
@@ -378,8 +386,8 @@ export type TutorPortfolioUncheckedUpdateInput = {
   university?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  subjects?: Prisma.TutorPortfolioUpdatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioUpdatepreferredClassesInput | string[]
+  subjects?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredClasses?: Prisma.StringFieldUpdateOperationsInput | string
   expectedSalary?: Prisma.IntFieldUpdateOperationsInput | number
   availability?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -392,8 +400,8 @@ export type TutorPortfolioCreateManyInput = {
   university: string
   department: string
   experience: string
-  subjects?: Prisma.TutorPortfolioCreatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioCreatepreferredClassesInput | string[]
+  subjects: string
+  preferredClasses: string
   expectedSalary: number
   availability: string
 }
@@ -405,8 +413,8 @@ export type TutorPortfolioUpdateManyMutationInput = {
   university?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  subjects?: Prisma.TutorPortfolioUpdatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioUpdatepreferredClassesInput | string[]
+  subjects?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredClasses?: Prisma.StringFieldUpdateOperationsInput | string
   expectedSalary?: Prisma.IntFieldUpdateOperationsInput | number
   availability?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -419,18 +427,10 @@ export type TutorPortfolioUncheckedUpdateManyInput = {
   university?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  subjects?: Prisma.TutorPortfolioUpdatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioUpdatepreferredClassesInput | string[]
+  subjects?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredClasses?: Prisma.StringFieldUpdateOperationsInput | string
   expectedSalary?: Prisma.IntFieldUpdateOperationsInput | number
   availability?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type StringNullableListFilter<$PrismaModel = never> = {
-  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
-  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
-  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
 }
 
 export type TutorPortfolioCountOrderByAggregateInput = {
@@ -459,6 +459,8 @@ export type TutorPortfolioMaxOrderByAggregateInput = {
   university?: Prisma.SortOrder
   department?: Prisma.SortOrder
   experience?: Prisma.SortOrder
+  subjects?: Prisma.SortOrder
+  preferredClasses?: Prisma.SortOrder
   expectedSalary?: Prisma.SortOrder
   availability?: Prisma.SortOrder
 }
@@ -471,6 +473,8 @@ export type TutorPortfolioMinOrderByAggregateInput = {
   university?: Prisma.SortOrder
   department?: Prisma.SortOrder
   experience?: Prisma.SortOrder
+  subjects?: Prisma.SortOrder
+  preferredClasses?: Prisma.SortOrder
   expectedSalary?: Prisma.SortOrder
   availability?: Prisma.SortOrder
 }
@@ -482,24 +486,6 @@ export type TutorPortfolioSumOrderByAggregateInput = {
 export type TutorPortfolioNullableScalarRelationFilter = {
   is?: Prisma.TutorPortfolioWhereInput | null
   isNot?: Prisma.TutorPortfolioWhereInput | null
-}
-
-export type TutorPortfolioCreatesubjectsInput = {
-  set: string[]
-}
-
-export type TutorPortfolioCreatepreferredClassesInput = {
-  set: string[]
-}
-
-export type TutorPortfolioUpdatesubjectsInput = {
-  set?: string[]
-  push?: string | string[]
-}
-
-export type TutorPortfolioUpdatepreferredClassesInput = {
-  set?: string[]
-  push?: string | string[]
 }
 
 export type TutorPortfolioCreateNestedOneWithoutUserInput = {
@@ -541,8 +527,8 @@ export type TutorPortfolioCreateWithoutUserInput = {
   university: string
   department: string
   experience: string
-  subjects?: Prisma.TutorPortfolioCreatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioCreatepreferredClassesInput | string[]
+  subjects: string
+  preferredClasses: string
   expectedSalary: number
   availability: string
 }
@@ -554,8 +540,8 @@ export type TutorPortfolioUncheckedCreateWithoutUserInput = {
   university: string
   department: string
   experience: string
-  subjects?: Prisma.TutorPortfolioCreatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioCreatepreferredClassesInput | string[]
+  subjects: string
+  preferredClasses: string
   expectedSalary: number
   availability: string
 }
@@ -583,8 +569,8 @@ export type TutorPortfolioUpdateWithoutUserInput = {
   university?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  subjects?: Prisma.TutorPortfolioUpdatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioUpdatepreferredClassesInput | string[]
+  subjects?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredClasses?: Prisma.StringFieldUpdateOperationsInput | string
   expectedSalary?: Prisma.IntFieldUpdateOperationsInput | number
   availability?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -596,8 +582,8 @@ export type TutorPortfolioUncheckedUpdateWithoutUserInput = {
   university?: Prisma.StringFieldUpdateOperationsInput | string
   department?: Prisma.StringFieldUpdateOperationsInput | string
   experience?: Prisma.StringFieldUpdateOperationsInput | string
-  subjects?: Prisma.TutorPortfolioUpdatesubjectsInput | string[]
-  preferredClasses?: Prisma.TutorPortfolioUpdatepreferredClassesInput | string[]
+  subjects?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredClasses?: Prisma.StringFieldUpdateOperationsInput | string
   expectedSalary?: Prisma.IntFieldUpdateOperationsInput | number
   availability?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -687,8 +673,8 @@ export type $TutorPortfolioPayload<ExtArgs extends runtime.Types.Extensions.Inte
     university: string
     department: string
     experience: string
-    subjects: string[]
-    preferredClasses: string[]
+    subjects: string
+    preferredClasses: string
     expectedSalary: number
     availability: string
   }, ExtArgs["result"]["tutorPortfolio"]>
@@ -1122,8 +1108,8 @@ export interface TutorPortfolioFieldRefs {
   readonly university: Prisma.FieldRef<"TutorPortfolio", 'String'>
   readonly department: Prisma.FieldRef<"TutorPortfolio", 'String'>
   readonly experience: Prisma.FieldRef<"TutorPortfolio", 'String'>
-  readonly subjects: Prisma.FieldRef<"TutorPortfolio", 'String[]'>
-  readonly preferredClasses: Prisma.FieldRef<"TutorPortfolio", 'String[]'>
+  readonly subjects: Prisma.FieldRef<"TutorPortfolio", 'String'>
+  readonly preferredClasses: Prisma.FieldRef<"TutorPortfolio", 'String'>
   readonly expectedSalary: Prisma.FieldRef<"TutorPortfolio", 'Int'>
   readonly availability: Prisma.FieldRef<"TutorPortfolio", 'String'>
 }

@@ -8,8 +8,8 @@ model TutorPortfolio {
   university        String
   department        String
   experience        String
-  subjects          String[]   // PostgreSQL array
-  preferredClasses  String[]
+  subjects          String
+  preferredClasses  String
   expectedSalary    Int
   availability      String
 

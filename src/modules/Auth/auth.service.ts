@@ -123,6 +123,11 @@ const login = async (payload: LoginInput) => {
     throw new Error("User not found");
   }
 
+  // Check banned
+  if (user.isBanned) {
+    throw new Error("Your account has been banned");
+  }
+
   // 2. Check verified
   if (!user.isVerified) {
     throw new Error("Please verify your email first");

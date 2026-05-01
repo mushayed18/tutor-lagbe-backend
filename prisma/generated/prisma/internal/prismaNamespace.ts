@@ -1321,6 +1321,7 @@ export const UserScalarFieldEnum = {
   photo: 'photo',
   location: 'location',
   role: 'role',
+  isBanned: 'isBanned',
   subscriptionType: 'subscriptionType',
   subscriptionRole: 'subscriptionRole',
   subscriptionExpiresAt: 'subscriptionExpiresAt',
@@ -1489,6 +1490,13 @@ export type ListEnumTuitionStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'SubscriptionType'
  */
 export type EnumSubscriptionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionType'>
@@ -1513,13 +1521,6 @@ export type EnumSubscriptionRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'SubscriptionRole[]'
  */
 export type ListEnumSubscriptionRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SubscriptionRole[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

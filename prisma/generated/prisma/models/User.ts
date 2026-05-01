@@ -33,6 +33,7 @@ export type UserMinAggregateOutputType = {
   photo: string | null
   location: string | null
   role: $Enums.Role | null
+  isBanned: boolean | null
   subscriptionType: $Enums.SubscriptionType | null
   subscriptionRole: $Enums.SubscriptionRole | null
   subscriptionExpiresAt: Date | null
@@ -50,6 +51,7 @@ export type UserMaxAggregateOutputType = {
   photo: string | null
   location: string | null
   role: $Enums.Role | null
+  isBanned: boolean | null
   subscriptionType: $Enums.SubscriptionType | null
   subscriptionRole: $Enums.SubscriptionRole | null
   subscriptionExpiresAt: Date | null
@@ -67,6 +69,7 @@ export type UserCountAggregateOutputType = {
   photo: number
   location: number
   role: number
+  isBanned: number
   subscriptionType: number
   subscriptionRole: number
   subscriptionExpiresAt: number
@@ -86,6 +89,7 @@ export type UserMinAggregateInputType = {
   photo?: true
   location?: true
   role?: true
+  isBanned?: true
   subscriptionType?: true
   subscriptionRole?: true
   subscriptionExpiresAt?: true
@@ -103,6 +107,7 @@ export type UserMaxAggregateInputType = {
   photo?: true
   location?: true
   role?: true
+  isBanned?: true
   subscriptionType?: true
   subscriptionRole?: true
   subscriptionExpiresAt?: true
@@ -120,6 +125,7 @@ export type UserCountAggregateInputType = {
   photo?: true
   location?: true
   role?: true
+  isBanned?: true
   subscriptionType?: true
   subscriptionRole?: true
   subscriptionExpiresAt?: true
@@ -210,6 +216,7 @@ export type UserGroupByOutputType = {
   photo: string | null
   location: string | null
   role: $Enums.Role
+  isBanned: boolean
   subscriptionType: $Enums.SubscriptionType
   subscriptionRole: $Enums.SubscriptionRole | null
   subscriptionExpiresAt: Date | null
@@ -248,6 +255,7 @@ export type UserWhereInput = {
   photo?: Prisma.StringNullableFilter<"User"> | string | null
   location?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  isBanned?: Prisma.BoolFilter<"User"> | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFilter<"User"> | $Enums.SubscriptionType
   subscriptionRole?: Prisma.EnumSubscriptionRoleNullableFilter<"User"> | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
@@ -275,6 +283,7 @@ export type UserOrderByWithRelationInput = {
   photo?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  isBanned?: Prisma.SortOrder
   subscriptionType?: Prisma.SortOrder
   subscriptionRole?: Prisma.SortOrderInput | Prisma.SortOrder
   subscriptionExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -305,6 +314,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   photo?: Prisma.StringNullableFilter<"User"> | string | null
   location?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  isBanned?: Prisma.BoolFilter<"User"> | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFilter<"User"> | $Enums.SubscriptionType
   subscriptionRole?: Prisma.EnumSubscriptionRoleNullableFilter<"User"> | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
@@ -332,6 +342,7 @@ export type UserOrderByWithAggregationInput = {
   photo?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
+  isBanned?: Prisma.SortOrder
   subscriptionType?: Prisma.SortOrder
   subscriptionRole?: Prisma.SortOrderInput | Prisma.SortOrder
   subscriptionExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -355,6 +366,7 @@ export type UserScalarWhereWithAggregatesInput = {
   photo?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   location?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+  isBanned?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeWithAggregatesFilter<"User"> | $Enums.SubscriptionType
   subscriptionRole?: Prisma.EnumSubscriptionRoleNullableWithAggregatesFilter<"User"> | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
@@ -372,6 +384,7 @@ export type UserCreateInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -399,6 +412,7 @@ export type UserUncheckedCreateInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -426,6 +440,7 @@ export type UserUpdateInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -453,6 +468,7 @@ export type UserUncheckedUpdateInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -480,6 +496,7 @@ export type UserCreateManyInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -497,6 +514,7 @@ export type UserUpdateManyMutationInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -514,6 +532,7 @@ export type UserUncheckedUpdateManyInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -536,6 +555,7 @@ export type UserCountOrderByAggregateInput = {
   photo?: Prisma.SortOrder
   location?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  isBanned?: Prisma.SortOrder
   subscriptionType?: Prisma.SortOrder
   subscriptionRole?: Prisma.SortOrder
   subscriptionExpiresAt?: Prisma.SortOrder
@@ -553,6 +573,7 @@ export type UserMaxOrderByAggregateInput = {
   photo?: Prisma.SortOrder
   location?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  isBanned?: Prisma.SortOrder
   subscriptionType?: Prisma.SortOrder
   subscriptionRole?: Prisma.SortOrder
   subscriptionExpiresAt?: Prisma.SortOrder
@@ -570,6 +591,7 @@ export type UserMinOrderByAggregateInput = {
   photo?: Prisma.SortOrder
   location?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  isBanned?: Prisma.SortOrder
   subscriptionType?: Prisma.SortOrder
   subscriptionRole?: Prisma.SortOrder
   subscriptionExpiresAt?: Prisma.SortOrder
@@ -722,6 +744,10 @@ export type EnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type EnumSubscriptionTypeFieldUpdateOperationsInput = {
   set?: $Enums.SubscriptionType
 }
@@ -734,10 +760,6 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type UserCreateWithoutApplicationsInput = {
   id?: string
   name: string
@@ -747,6 +769,7 @@ export type UserCreateWithoutApplicationsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -773,6 +796,7 @@ export type UserUncheckedCreateWithoutApplicationsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -815,6 +839,7 @@ export type UserUpdateWithoutApplicationsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -841,6 +866,7 @@ export type UserUncheckedUpdateWithoutApplicationsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -867,6 +893,7 @@ export type UserCreateWithoutBookmarksInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -893,6 +920,7 @@ export type UserUncheckedCreateWithoutBookmarksInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -935,6 +963,7 @@ export type UserUpdateWithoutBookmarksInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -961,6 +990,7 @@ export type UserUncheckedUpdateWithoutBookmarksInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -987,6 +1017,7 @@ export type UserCreateWithoutTutorHiresInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1013,6 +1044,7 @@ export type UserUncheckedCreateWithoutTutorHiresInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1044,6 +1076,7 @@ export type UserCreateWithoutParentHiresInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1070,6 +1103,7 @@ export type UserUncheckedCreateWithoutParentHiresInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1112,6 +1146,7 @@ export type UserUpdateWithoutTutorHiresInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1138,6 +1173,7 @@ export type UserUncheckedUpdateWithoutTutorHiresInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1175,6 +1211,7 @@ export type UserUpdateWithoutParentHiresInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1201,6 +1238,7 @@ export type UserUncheckedUpdateWithoutParentHiresInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1227,6 +1265,7 @@ export type UserCreateWithoutNotificationsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1253,6 +1292,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1295,6 +1335,7 @@ export type UserUpdateWithoutNotificationsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1321,6 +1362,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1347,6 +1389,7 @@ export type UserCreateWithoutPaymentsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1373,6 +1416,7 @@ export type UserUncheckedCreateWithoutPaymentsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1415,6 +1459,7 @@ export type UserUpdateWithoutPaymentsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1441,6 +1486,7 @@ export type UserUncheckedUpdateWithoutPaymentsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1467,6 +1513,7 @@ export type UserCreateWithoutReviewsGivenInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1493,6 +1540,7 @@ export type UserUncheckedCreateWithoutReviewsGivenInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1524,6 +1572,7 @@ export type UserCreateWithoutReviewsReceivedInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1550,6 +1599,7 @@ export type UserUncheckedCreateWithoutReviewsReceivedInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1592,6 +1642,7 @@ export type UserUpdateWithoutReviewsGivenInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1618,6 +1669,7 @@ export type UserUncheckedUpdateWithoutReviewsGivenInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1655,6 +1707,7 @@ export type UserUpdateWithoutReviewsReceivedInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1681,6 +1734,7 @@ export type UserUncheckedUpdateWithoutReviewsReceivedInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1707,6 +1761,7 @@ export type UserCreateWithoutTuitionsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1733,6 +1788,7 @@ export type UserUncheckedCreateWithoutTuitionsInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1775,6 +1831,7 @@ export type UserUpdateWithoutTuitionsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1801,6 +1858,7 @@ export type UserUncheckedUpdateWithoutTuitionsInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1827,6 +1885,7 @@ export type UserCreateWithoutPortfolioInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1853,6 +1912,7 @@ export type UserUncheckedCreateWithoutPortfolioInput = {
   photo?: string | null
   location?: string | null
   role: $Enums.Role
+  isBanned?: boolean
   subscriptionType?: $Enums.SubscriptionType
   subscriptionRole?: $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Date | string | null
@@ -1895,6 +1955,7 @@ export type UserUpdateWithoutPortfolioInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1921,6 +1982,7 @@ export type UserUncheckedUpdateWithoutPortfolioInput = {
   photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isBanned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptionType?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
   subscriptionRole?: Prisma.NullableEnumSubscriptionRoleFieldUpdateOperationsInput | $Enums.SubscriptionRole | null
   subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2050,6 +2112,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   photo?: boolean
   location?: boolean
   role?: boolean
+  isBanned?: boolean
   subscriptionType?: boolean
   subscriptionRole?: boolean
   subscriptionExpiresAt?: boolean
@@ -2078,6 +2141,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   photo?: boolean
   location?: boolean
   role?: boolean
+  isBanned?: boolean
   subscriptionType?: boolean
   subscriptionRole?: boolean
   subscriptionExpiresAt?: boolean
@@ -2095,6 +2159,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   photo?: boolean
   location?: boolean
   role?: boolean
+  isBanned?: boolean
   subscriptionType?: boolean
   subscriptionRole?: boolean
   subscriptionExpiresAt?: boolean
@@ -2112,6 +2177,7 @@ export type UserSelectScalar = {
   photo?: boolean
   location?: boolean
   role?: boolean
+  isBanned?: boolean
   subscriptionType?: boolean
   subscriptionRole?: boolean
   subscriptionExpiresAt?: boolean
@@ -2120,7 +2186,7 @@ export type UserSelectScalar = {
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "photo" | "location" | "role" | "subscriptionType" | "subscriptionRole" | "subscriptionExpiresAt" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "phone" | "photo" | "location" | "role" | "isBanned" | "subscriptionType" | "subscriptionRole" | "subscriptionExpiresAt" | "isVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   portfolio?: boolean | Prisma.User$portfolioArgs<ExtArgs>
   applications?: boolean | Prisma.User$applicationsArgs<ExtArgs>
@@ -2160,6 +2226,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     photo: string | null
     location: string | null
     role: $Enums.Role
+    isBanned: boolean
     subscriptionType: $Enums.SubscriptionType
     subscriptionRole: $Enums.SubscriptionRole | null
     subscriptionExpiresAt: Date | null
@@ -2607,6 +2674,7 @@ export interface UserFieldRefs {
   readonly photo: Prisma.FieldRef<"User", 'String'>
   readonly location: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly isBanned: Prisma.FieldRef<"User", 'Boolean'>
   readonly subscriptionType: Prisma.FieldRef<"User", 'SubscriptionType'>
   readonly subscriptionRole: Prisma.FieldRef<"User", 'SubscriptionRole'>
   readonly subscriptionExpiresAt: Prisma.FieldRef<"User", 'DateTime'>

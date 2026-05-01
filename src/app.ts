@@ -10,6 +10,7 @@ import applicationRoutes from './modules/application/application.route';
 import notificationRoutes from './modules/notification/notification.route';
 import hireRelationRoutes from './modules/hireRelation/hireRelation.route';
 import portfolioRoutes from './modules/tutorPortfolio/portfolio.route';
+import adminRoutes from './modules/admin/admin.route';
 
 const app: Application = express();
 
@@ -33,6 +34,7 @@ app.use('/api/applications', applicationRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/hire-relations', hireRelationRoutes);
 app.use('/api/portfolio', portfolioRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello from Tutor Lagbe!');

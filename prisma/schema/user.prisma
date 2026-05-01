@@ -9,6 +9,8 @@ model User {
 
   role      Role
 
+  isBanned Boolean @default(false)
+
   // subscription
   subscriptionType        SubscriptionType @default(FREE)
   subscriptionRole        SubscriptionRole?

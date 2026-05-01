@@ -208,6 +208,7 @@ export const UserScalarFieldEnum = {
   photo: 'photo',
   location: 'location',
   role: 'role',
+  isBanned: 'isBanned',
   subscriptionType: 'subscriptionType',
   subscriptionRole: 'subscriptionRole',
   subscriptionExpiresAt: 'subscriptionExpiresAt',

@@ -4,7 +4,7 @@ export const requireRole = (...roles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const user = req.user;
 
-    if (!roles.includes(user.role)) {
+    if (!user || !roles.includes(user.role)) {
       return res.status(403).json({
         success: false,
         message: "Forbidden: Access denied",

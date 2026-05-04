@@ -83,9 +83,28 @@ const getAllTuitions = async (req: Request, res: Response) => {
   }
 };
 
+const deleteTuition = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const result = await AdminService.deleteTuition(id as string);
+
+    res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error: any) {
+    res.status(404).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 export const AdminController = {
   getUsers,
   getSingleUser,
   toggleUserBan,
   getAllTuitions,
+  deleteTuition,
 };

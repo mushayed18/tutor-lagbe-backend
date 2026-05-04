@@ -34,4 +34,11 @@ router.get(
   AdminController.getAllTuitions
 );
 
+router.delete(
+  "/tuitions/:id",
+  authMiddleware,
+  requireRole("ADMIN"),
+  AdminController.deleteTuition
+);
+
 export default router;

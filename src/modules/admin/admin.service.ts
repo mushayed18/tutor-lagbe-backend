@@ -141,9 +141,28 @@ const getAllTuitions = async (query: { page?: any; limit?: any }) => {
   };
 };
 
+const deleteTuition = async (tuitionId: string) => {
+  // 1. Check existence
+  const tuition = await prisma.tuition.findUnique({
+    where: { id: tuitionId },
+  });
+
+  if (!tuition) {
+    throw new Error("Tuition not found");
+  }
+
+  // 2. Delete
+  await prisma.tuition.delete({
+    where: { id: tuitionId },
+  });
+
+  return { message: "Tuition deleted successfully" };
+};
+
 export const AdminService = {
   getUsers,
   getSingleUser,
   toggleUserBan,
   getAllTuitions,
+  deleteTuition,
 };

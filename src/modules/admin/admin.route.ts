@@ -20,4 +20,18 @@ router.get(
   AdminController.getSingleUser
 );
 
+router.patch(
+  "/users/:id/ban",
+  authMiddleware,
+  requireRole("ADMIN"),
+  AdminController.toggleUserBan
+);
+
+router.get(
+  "/tuitions",
+  authMiddleware,
+  requireRole("ADMIN"),
+  AdminController.getAllTuitions
+);
+
 export default router;

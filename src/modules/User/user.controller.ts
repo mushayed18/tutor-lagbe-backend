@@ -42,4 +42,22 @@ const getUserProfile = async (req: Request, res: Response) => {
   }
 };
 
-export { updateProfile, getUserProfile };
+const getMe = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user.id;
+
+    const result = await UserService.getMe(userId);
+
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(401).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export { updateProfile, getUserProfile, getMe };

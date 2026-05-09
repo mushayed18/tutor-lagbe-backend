@@ -64,11 +64,10 @@ const removeBookmark = async (requester: AuthUser, tuitionId: string) => {
 
 const getMyBookmarks = async (
   requester: AuthUser,
-  query: { page?: any; limit?: any }
+  query: { page?: any; limit?: any },
 ) => {
   const page = Number(query.page) || 1;
   const limit = Number(query.limit) || 10;
-
   const skip = (page - 1) * limit;
 
   const bookmarks = await prisma.bookmark.findMany({
@@ -76,7 +75,7 @@ const getMyBookmarks = async (
       userId: requester.id,
     },
     orderBy: {
-      createdAt: "desc", // ⚠️ we need this field (see note below)
+      createdAt: "desc",
     },
     skip,
     take: limit,
@@ -92,14 +91,23 @@ const getMyBookmarks = async (
               subscriptionRole: true,
             },
           },
+          // ADD THIS: Check if the requester has applied to this specific tuition
+          applications: {
+            where: {
+              tutorId: requester.id,
+            },
+            select: {
+              id: true,
+            },
+          },
         },
       },
     },
   });
 
-  // Format like feed
+  // Format the result to match the Feed structure
   const result = bookmarks.map((b) => ({
-    id: b.id,
+    id: b.id, // This is the Bookmark ID
 
     tuition: {
       id: b.tuition.id,
@@ -113,8 +121,10 @@ const getMyBookmarks = async (
       timeSlot: b.tuition.timeSlot,
       status: b.tuition.status,
       createdAt: b.tuition.createdAt,
-
       parent: b.tuition.parent,
+
+      // NEW BOOLEAN: Now the frontend card will see this
+      hasApplied: b.tuition.applications.length > 0,
     },
   }));
 

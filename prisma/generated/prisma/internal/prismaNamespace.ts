@@ -1231,6 +1231,7 @@ export const NotificationScalarFieldEnum = {
   title: 'title',
   message: 'message',
   type: 'type',
+  isRead: 'isRead',
   createdAt: 'createdAt'
 } as const
 
@@ -1420,6 +1421,13 @@ export type ListEnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputT
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Role'
  */
 export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
@@ -1486,13 +1494,6 @@ export type EnumTuitionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'TuitionStatus[]'
  */
 export type ListEnumTuitionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TuitionStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

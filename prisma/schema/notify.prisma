@@ -8,6 +8,8 @@ model Notification {
   message   String
   type      NotificationType
 
+  isRead    Boolean          @default(false)
+
   createdAt DateTime @default(now())
 
   //////////////////////////////////////////////////

@@ -20,6 +20,28 @@ const getMyNotifications = async (req: Request, res: Response) => {
   }
 };
 
+// ADD NEW: Handles the /unread-count request
+const getUnreadCount = async (req: Request, res: Response) => {
+  try {
+    const result = await NotificationService.getUnreadCount(req.user);
+    res.json({ success: true, data: result });
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+// ADD NEW: Handles the /mark-as-read request
+const markAsRead = async (req: Request, res: Response) => {
+  try {
+    const result = await NotificationService.markAllAsRead(req.user);
+    res.json({ success: true, data: result });
+  } catch (error: any) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
+
 export {
   getMyNotifications,
+  getUnreadCount,
+  markAsRead,
 };

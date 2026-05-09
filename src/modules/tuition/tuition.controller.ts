@@ -9,10 +9,7 @@ const createTuition = async (req: Request, res: Response) => {
     // validate body
     const validatedData = createTuitionSchema.parse(req.body);
 
-    const result = await TuitionService.createTuition(
-      requester,
-      validatedData
-    );
+    const result = await TuitionService.createTuition(requester, validatedData);
 
     res.status(201).json({
       success: true,
@@ -29,7 +26,8 @@ const createTuition = async (req: Request, res: Response) => {
 
 const getAllTuitions = async (req: Request, res: Response) => {
   try {
-    const result = await TuitionService.getAllTuitions(req.query);
+    const requester = req.user; // Ensure authMiddleware is running
+    const result = await TuitionService.getAllTuitions(requester, req.query);
 
     res.status(200).json({
       success: true,
@@ -46,13 +44,11 @@ const getAllTuitions = async (req: Request, res: Response) => {
 
 const getSingleTuition = async (req: Request, res: Response) => {
   try {
-    const requester = req.user; // from auth middleware
+    const requester = req.user; // This comes from authMiddleware
     const tuitionId = req.params.id as string;
 
-    const result = await TuitionService.getSingleTuition(
-      requester,
-      tuitionId
-    );
+    // We pass both the user and the ID to the service
+    const result = await TuitionService.getSingleTuition(requester, tuitionId);
 
     res.status(200).json({
       success: true,
@@ -76,10 +72,7 @@ const getMyTuitions = async (req: Request, res: Response) => {
       limit: req.query.limit,
     };
 
-    const result = await TuitionService.getMyTuitions(
-      requester,
-      query
-    );
+    const result = await TuitionService.getMyTuitions(requester, query);
 
     res.status(200).json({
       success: true,
@@ -103,7 +96,7 @@ const updateTuition = async (req: Request, res: Response) => {
     const result = await TuitionService.updateTuition(
       requester,
       tuitionId,
-      payload
+      payload,
     );
 
     res.status(200).json({
@@ -124,10 +117,7 @@ const deleteTuition = async (req: Request, res: Response) => {
     const requester = req.user;
     const tuitionId = req.params.id as string;
 
-    const result = await TuitionService.deleteTuition(
-      requester,
-      tuitionId
-    );
+    const result = await TuitionService.deleteTuition(requester, tuitionId);
 
     res.status(200).json({
       success: true,
@@ -142,4 +132,11 @@ const deleteTuition = async (req: Request, res: Response) => {
   }
 };
 
-export { createTuition, getAllTuitions, getSingleTuition, getMyTuitions, updateTuition, deleteTuition };
+export {
+  createTuition,
+  getAllTuitions,
+  getSingleTuition,
+  getMyTuitions,
+  updateTuition,
+  deleteTuition,
+};

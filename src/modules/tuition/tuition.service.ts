@@ -26,10 +26,13 @@ const createTuition = async (
   return tuition;
 };
 
-const getAllTuitions = async (query: { page?: number; limit?: number }) => {
+// 1. Pass requester to the function
+const getAllTuitions = async (
+  requester: any,
+  query: { page?: number; limit?: number },
+) => {
   const page = Number(query.page) || 1;
   const limit = Number(query.limit) || 10;
-
   const skip = (page - 1) * limit;
 
   const tuitions = await prisma.tuition.findMany({
@@ -40,18 +43,32 @@ const getAllTuitions = async (query: { page?: number; limit?: number }) => {
           name: true,
           photo: true,
           subscriptionType: true,
+          subscriptionExpiresAt: true, // Need this for the premium logic below
           subscriptionRole: true,
         },
+      },
+      // 2. Check if THIS requester has bookmarked this tuition
+      bookmarks: {
+        where: {
+          userId: requester.id,
+        },
+        select: {
+          id: true,
+        },
+      },
+
+      applications: {
+        where: { tutorId: requester.id },
+        select: { id: true },
       },
     },
     orderBy: {
       createdAt: "desc",
     },
     skip,
-    take: limit * 2, // fetch extra for better sorting
+    take: limit * 2,
   });
 
-  //  Premium logic
   const isPremiumActive = (user: any) => {
     return (
       user.subscriptionType === "PREMIUM" &&
@@ -60,19 +77,25 @@ const getAllTuitions = async (query: { page?: number; limit?: number }) => {
     );
   };
 
-  // Sort
+  // Sort logic (unchanged)
   tuitions.sort((a, b) => {
     const aPremium = isPremiumActive(a.parent);
     const bPremium = isPremiumActive(b.parent);
-
     if (aPremium && !bPremium) return -1;
     if (!aPremium && bPremium) return 1;
-
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
   });
 
-  // Final slice
-  return tuitions.slice(0, limit);
+  // 3. Format the result to include a simple boolean 'isBookmarked'
+  const formattedTuitions = tuitions.slice(0, limit).map((t) => ({
+    ...t,
+    isBookmarked: t.bookmarks.length > 0, // If the array has an item, they bookmarked it
+    hasApplied: t.applications.length > 0,
+    bookmarks: undefined, // Remove the raw array from the response to keep it clean
+    applications: undefined,
+  }));
+
+  return formattedTuitions;
 };
 
 const getSingleTuition = async (requester: any, tuitionId: string) => {
@@ -83,6 +106,24 @@ const getSingleTuition = async (requester: any, tuitionId: string) => {
       _count: {
         select: {
           applications: true,
+        },
+      },
+      // Check for a bookmark by the current user
+      bookmarks: {
+        where: {
+          userId: requester.id,
+        },
+        select: {
+          id: true,
+        },
+      },
+      // ADD THIS: Check if the current user has applied
+      applications: {
+        where: {
+          tutorId: requester.id,
+        },
+        select: {
+          id: true,
         },
       },
     },
@@ -96,6 +137,10 @@ const getSingleTuition = async (requester: any, tuitionId: string) => {
     ...tuition,
     applicationsCount: tuition._count.applications,
 
+    // Convert arrays to simple booleans
+    isBookmarked: tuition.bookmarks.length > 0,
+    hasApplied: tuition.applications.length > 0, // NEW BOOLEAN
+
     parent: {
       id: tuition.parent.id,
       name: tuition.parent.name,
@@ -105,6 +150,10 @@ const getSingleTuition = async (requester: any, tuitionId: string) => {
       phone: null,
       email: null,
     },
+
+    // Cleanup: remove the raw arrays from the final object
+    bookmarks: undefined,
+    applications: undefined,
   };
 };
 

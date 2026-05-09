@@ -744,10 +744,6 @@ export type EnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type EnumSubscriptionTypeFieldUpdateOperationsInput = {
   set?: $Enums.SubscriptionType
 }

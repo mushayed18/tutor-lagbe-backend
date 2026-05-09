@@ -1,5 +1,45 @@
 import { prisma } from "../../lib/prisma";
 
+const getUserReviews = async (
+  targetUserId: string,
+  page: number,
+  limit: number,
+) => {
+  const skip = (page - 1) * limit;
+
+  // 1. Fetch reviews and count simultaneously
+  const [reviews, total] = await Promise.all([
+    prisma.review.findMany({
+      where: { targetUserId },
+      skip,
+      take: limit,
+      orderBy: { createdAt: "desc" },
+      include: {
+        reviewer: {
+          select: {
+            id: true,
+            name: true,
+            photo: true,
+          },
+        },
+      },
+    }),
+    prisma.review.count({
+      where: { targetUserId },
+    }),
+  ]);
+
+  return {
+    reviews,
+    meta: {
+      total,
+      page,
+      limit,
+      totalPage: Math.ceil(total / limit),
+    },
+  };
+};
+
 const createReview = async (requester: any, payload: any) => {
   const { targetUserId, rating, comment } = payload;
 
@@ -117,4 +157,5 @@ export const ReviewService = {
   createReview,
   updateReview,
   deleteReview,
+  getUserReviews,
 };

@@ -61,22 +61,6 @@ const getUserProfile = async (requester: any, targetUserId: string) => {
       createdAt: true,
       updatedAt: true,
       password: false, // explicit safety
-
-      reviewsReceived: {
-        select: {
-          id: true,
-          rating: true,
-          comment: true,
-          createdAt: true,
-          reviewer: {
-            select: {
-              id: true,
-              name: true,
-              photo: true, 
-            },
-          },
-        },
-      },
     },
   });
 

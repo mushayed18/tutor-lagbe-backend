@@ -3,7 +3,7 @@ import { AuthUser } from "../../types/common";
 
 const getMyConnections = async (
   requester: AuthUser,
-  query: { page?: any; limit?: any }
+  query: { page?: any; limit?: any },
 ) => {
   const page = Number(query.page) || 1;
   const limit = Number(query.limit) || 10;
@@ -30,6 +30,7 @@ const getMyConnections = async (
               photo: true,
             },
           },
+          tuition: { select: { title: true } },
         },
       }),
     ]);
@@ -39,6 +40,7 @@ const getMyConnections = async (
       name: rel.parent.name,
       photo: rel.parent.photo,
       tuitionId: rel.tuitionId, // optional but useful
+      tuitionTitle: rel.tuition?.title,
     }));
 
     return {
@@ -72,6 +74,7 @@ const getMyConnections = async (
               photo: true,
             },
           },
+          tuition: { select: { title: true } },
         },
       }),
     ]);
@@ -81,6 +84,7 @@ const getMyConnections = async (
       name: rel.tutor.name,
       photo: rel.tutor.photo,
       tuitionId: rel.tuitionId,
+      tuitionTitle: rel.tuition?.title,
     }));
 
     return {

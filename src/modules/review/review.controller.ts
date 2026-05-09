@@ -2,6 +2,31 @@ import { Request, Response } from "express";
 import { createReviewSchema, updateReviewSchema } from "./review.validation";
 import { ReviewService } from "./review.service";
 
+const getUserReviews = async (req: Request, res: Response) => {
+  try {
+    const targetUserId = req.params.userId;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 5;
+
+    const result = await ReviewService.getUserReviews(
+      targetUserId as string,
+      page,
+      limit,
+    );
+
+    res.status(200).json({
+      success: true,
+      data: result.reviews,
+      meta: result.meta, // For pagination handling on frontend
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 const createReview = async (req: Request, res: Response) => {
   try {
     const requester = req.user;
@@ -67,4 +92,4 @@ const deleteReview = async (req: Request, res: Response) => {
   }
 };
 
-export { createReview, updateReview, deleteReview };
+export { createReview, updateReview, deleteReview, getUserReviews };

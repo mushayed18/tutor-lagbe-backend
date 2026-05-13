@@ -2,6 +2,28 @@ import { Request, Response } from "express";
 import { createReviewSchema, updateReviewSchema } from "./review.validation";
 import { ReviewService } from "./review.service";
 
+const checkEligibility = async (req: Request, res: Response) => {
+  try {
+    const requester = req.user; // From authMiddleware
+    const targetUserId = req.params.targetUserId;
+
+    const result = await ReviewService.checkEligibility(
+      requester.id,
+      targetUserId as string
+    );
+
+    res.status(200).json({
+      success: true,
+      canReview: result,
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 const getUserReviews = async (req: Request, res: Response) => {
   try {
     const targetUserId = req.params.userId;
@@ -92,4 +114,4 @@ const deleteReview = async (req: Request, res: Response) => {
   }
 };
 
-export { createReview, updateReview, deleteReview, getUserReviews };
+export { createReview, updateReview, deleteReview, getUserReviews, checkEligibility };

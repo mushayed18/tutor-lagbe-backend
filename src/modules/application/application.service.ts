@@ -35,6 +35,11 @@ const applyToTuition = async (requester: AuthUser, tuitionId: string) => {
     throw new Error("You have already applied to this tuition");
   }
 
+  const tutor = await prisma.user.findUnique({
+    where: { id: requester.id },
+    select: { name: true }
+  });
+
   // 5. Create application
   const application = await prisma.application.create({
     data: {
@@ -48,7 +53,7 @@ const applyToTuition = async (requester: AuthUser, tuitionId: string) => {
       userId: tuition.parentId,
       tuitionId: tuition.id,
       title: "New Application",
-      message: "A tutor applied to your tuition",
+      message: `${tutor?.name || "A tutor"} has applied to your tuition`,
       type: "APPLY",
     },
   });

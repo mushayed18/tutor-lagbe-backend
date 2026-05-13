@@ -1,5 +1,34 @@
 import { prisma } from "../../lib/prisma";
 
+const checkEligibility = async (requesterId: string, targetUserId: string) => {
+  // 1. Check for a valid HireRelation
+  // This ensures the tutor was officially hired by this parent
+  const hasHiredRelation = await prisma.hireRelation.findFirst({
+    where: {
+      tutorId: requesterId,
+      parentId: targetUserId,
+    },
+  });
+
+  // If no hiring history exists, they cannot review
+  if (!hasHiredRelation) {
+    return false;
+  }
+
+  // 2. Check if a review already exists
+  // We don't want multiple reviews from the same person for the same target
+  const existingReview = await prisma.review.findFirst({
+    where: {
+      reviewerId: requesterId,
+      targetUserId: targetUserId,
+    },
+  });
+
+  // If they have already reviewed, they can't review again (canReview = false)
+  // If no review exists, they are eligible (canReview = true)
+  return !existingReview;
+};
+
 const getUserReviews = async (
   targetUserId: string,
   page: number,
@@ -158,4 +187,5 @@ export const ReviewService = {
   updateReview,
   deleteReview,
   getUserReviews,
+  checkEligibility,
 };

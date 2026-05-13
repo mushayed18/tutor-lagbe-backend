@@ -78,8 +78,21 @@ const getUserProfile = async (requester: any, targetUserId: string) => {
     return user;
   }
 
-  // 4. If requester is TUTOR & target is PARENT → hide phone
+  // 4. If requester is TUTOR & target is PARENT
   if (requester.role === "TUTOR" && user.role === "PARENT") {
+    // Check if this parent has hired this tutor
+    const hasBeenHired = await prisma.hireRelation.findFirst({
+      where: {
+        tutorId: requester.id,
+        parentId: targetUserId,
+      },
+    });
+
+    if (hasBeenHired) {
+      return user; // Return full profile including phone/email
+    }
+
+    // Otherwise hide
     return {
       ...user,
       phone: null,

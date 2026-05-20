@@ -69,15 +69,6 @@ const getMyPortfolio = async (requester: AuthUser) => {
 const getPortfolioByUserId = async (userId: string) => {
   const portfolio = await prisma.tutorPortfolio.findUnique({
     where: { userId },
-    include: {
-      user: {
-        select: {
-          id: true,
-          name: true,
-          photo: true,
-        },
-      },
-    },
   });
 
   if (!portfolio) {

@@ -6,11 +6,21 @@ const getUsers = async (query: { page?: any; limit?: any }) => {
 
   const skip = (page - 1) * limit;
 
-  // total count (for pagination UI)
-  const total = await prisma.user.count();
+  // 1. Define a shared filtration clause to exclude administrative accounts
+  const filterCondition = {
+    role: {
+      not: "ADMIN" as const, // Excludes any user matching the ADMIN enum value
+    },
+  };
 
-  // fetch users
+  // 2. Pass the condition to get an accurate consumer total count
+  const total = await prisma.user.count({
+    where: filterCondition,
+  });
+
+  // 3. Fetch filtered users
   const users = await prisma.user.findMany({
+    where: filterCondition,
     skip,
     take: limit,
     orderBy: {
@@ -48,7 +58,9 @@ const getSingleUser = async (userId: string) => {
       name: true,
       email: true,
       phone: true,
+      photo: true,
       role: true,
+      location: true,
       isBanned: true,
       isVerified: true,
       subscriptionType: true,

@@ -130,6 +130,7 @@ const getAllTuitions = async (query: { page?: any; limit?: any }) => {
           name: true,
           email: true,
           phone: true,
+          photo: true,
           role: true,
         },
       },

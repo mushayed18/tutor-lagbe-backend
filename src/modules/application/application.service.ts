@@ -37,7 +37,7 @@ const applyToTuition = async (requester: AuthUser, tuitionId: string) => {
 
   const tutor = await prisma.user.findUnique({
     where: { id: requester.id },
-    select: { name: true }
+    select: { name: true },
   });
 
   // 5. Create application
@@ -235,28 +235,44 @@ const updateApplicationStatus = async (
 
     // 5. If HIRED → full flow
 
-    // 5.1 Hire selected tutor
+    // 5.1 PRE-FETCH: Get ONLY the tutors who are currently still PENDING
+    // This avoids duplicate spam notifications to already-rejected users!
+    const pendingApplicationsToReject = await tx.application.findMany({
+      where: {
+        tuitionId: application.tuitionId,
+        id: { not: applicationId },
+        status: "PENDING", // 🌟 Bug fix constraint
+      },
+      select: {
+        tutorId: true,
+      },
+    });
+
+    // 5.2 Hire selected tutor
     await tx.application.update({
       where: { id: applicationId },
       data: { status: "HIRED" },
     });
 
-    // 5.2 Reject others
-    await tx.application.updateMany({
-      where: {
-        tuitionId: application.tuitionId,
-        id: { not: applicationId },
-      },
-      data: { status: "REJECTED" },
-    });
+    // 5.3 Reject ONLY the remaining pending candidates
+    if (pendingApplicationsToReject.length > 0) {
+      await tx.application.updateMany({
+        where: {
+          tuitionId: application.tuitionId,
+          id: { not: applicationId },
+          status: "PENDING",
+        },
+        data: { status: "REJECTED" },
+      });
+    }
 
-    // 5.3 Close tuition
+    // 5.4 Close tuition job status placement profile
     await tx.tuition.update({
       where: { id: application.tuitionId },
       data: { status: "CLOSED" },
     });
 
-    // 5.4 Create hire relation
+    // 5.5 Create structural hire relation link indices
     await tx.hireRelation.create({
       data: {
         tutorId: application.tutorId,
@@ -265,39 +281,33 @@ const updateApplicationStatus = async (
       },
     });
 
+    // 5.6 Dispatch primary hired notification profile alert
     await tx.notification.create({
       data: {
         userId: application.tutorId,
         tuitionId: application.tuitionId,
-
         title: "You are hired 🎉",
         message: "You have been selected for a tuition",
         type: "HIRED",
       },
     });
 
-    const rejectedApplications = await tx.application.findMany({
-      where: {
-        tuitionId: application.tuitionId,
-        id: { not: applicationId },
-      },
-      select: {
-        tutorId: true,
-      },
-    });
+    // 5.7 Dispatch rejections securely with zero duplicates or data races
+    if (pendingApplicationsToReject.length > 0) {
+      const rejectedTutorIds = pendingApplicationsToReject.map(
+        (app) => app.tutorId,
+      );
 
-    const rejectedTutorIds = rejectedApplications.map((app) => app.tutorId);
-
-    await tx.notification.createMany({
-      data: rejectedTutorIds.map((id) => ({
-        userId: id,
-        tuitionId: application.tuitionId,
-
-        title: "Application Rejected",
-        message: "Your application was rejected",
-        type: "REJECTED",
-      })),
-    });
+      await tx.notification.createMany({
+        data: rejectedTutorIds.map((id) => ({
+          userId: id,
+          tuitionId: application.tuitionId,
+          title: "Application Rejected",
+          message: "Your application was rejected",
+          type: "REJECTED",
+        })),
+      });
+    }
 
     return {
       message: "Tutor hired successfully",

@@ -125,7 +125,7 @@ const login = async (payload: LoginInput) => {
 
   // Check banned
   if (user.isBanned) {
-    throw new Error("Your account has been banned");
+    throw new Error("Your account has been banned by Admin");
   }
 
   // 2. Check verified

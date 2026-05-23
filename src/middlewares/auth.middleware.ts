@@ -37,7 +37,7 @@ export const authMiddleware = async (
     if (user.isBanned) {
       return res.status(403).json({
         success: false,
-        message: "Your account has been banned",
+        message: "Your account has been banned by Admin",
       });
     }
 

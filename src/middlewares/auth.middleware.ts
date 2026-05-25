@@ -6,10 +6,15 @@ import { prisma } from "../lib/prisma";
 export const authMiddleware = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
-    const token = req.cookies.token;
+    // Check cookies first, then check the standard Bearer token header string
+    let token = req.cookies.token;
+
+    if (!token && req.headers.authorization?.startsWith("Bearer ")) {
+      token = req.headers.authorization.split(" ")[1];
+    }
 
     if (!token) {
       return res.status(401).json({

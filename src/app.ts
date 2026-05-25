@@ -22,6 +22,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 const allowedOrigins = [
   "http://localhost:3000",
   "https://tutor-lagbe-five.vercel.app",
+  "https://tutor-lagbe.onrender.com",
 ];
 
 app.use(

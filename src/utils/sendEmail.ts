@@ -16,6 +16,11 @@ const transporter = nodemailer.createTransport({
  * @param otp - 6 digit code
  */
 export const sendOtpEmail = async (email: string, otp: string): Promise<void> => {
+  // ✅ TEMPORARY DEBUG LOGS
+  console.log("EMAIL_USER:", config.email_user);
+  console.log("EMAIL_PASS exists:", !!config.email_pass);
+  console.log("EMAIL_PASS length:", config.email_pass?.length);
+  
   const mailOptions = {
     from: `"TutorLagbe" <${config.email_user}>`,
     to: email,

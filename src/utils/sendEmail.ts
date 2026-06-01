@@ -8,7 +8,7 @@ export const sendOtpEmail = async (
   otp: string,
 ): Promise<void> => {
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: "TutorLagbe <onboarding@resend.dev>",
       to: email,
       subject: "Your TutorLagbe Verification Code",
@@ -20,6 +20,8 @@ export const sendOtpEmail = async (
         <p>If you did not request this, please ignore this email.</p>
       `,
     });
+
+    console.log("Resend result:", JSON.stringify(result)); // ✅ ADD THIS
     console.log(`✅ OTP email sent to ${email}`);
   } catch (error) {
     console.error("❌ Full email error:", error);

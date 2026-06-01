@@ -1,26 +1,18 @@
 import nodemailer from 'nodemailer';
-import config from '../config';   
+import config from '../config';
 
-// Create transporter once (reusable)
+// ✅ Don't use service: 'gmail' — configure manually with port 587
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,          // ✅ port 587 (TLS) — Render allows this
+  secure: false,      // ✅ false for port 587 (true is only for port 465)
   auth: {
-    user: config.email_user,      
-    pass: config.email_pass,      
+    user: config.email_user,
+    pass: config.email_pass,
   },
 });
 
-/**
- * Send OTP to user's email
- * @param email - user's email
- * @param otp - 6 digit code
- */
 export const sendOtpEmail = async (email: string, otp: string): Promise<void> => {
-  // ✅ TEMPORARY DEBUG LOGS
-  console.log("EMAIL_USER:", config.email_user);
-  console.log("EMAIL_PASS exists:", !!config.email_pass);
-  console.log("EMAIL_PASS length:", config.email_pass?.length);
-  
   const mailOptions = {
     from: `"TutorLagbe" <${config.email_user}>`,
     to: email,
@@ -38,7 +30,7 @@ export const sendOtpEmail = async (email: string, otp: string): Promise<void> =>
     await transporter.sendMail(mailOptions);
     console.log(`✅ OTP email sent to ${email}`);
   } catch (error) {
-    console.error('❌ Failed to send email:', error);
+    console.error('❌ Full email error:', error);
     throw new Error('Failed to send OTP email');
   }
 };

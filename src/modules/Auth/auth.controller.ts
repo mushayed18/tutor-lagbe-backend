@@ -58,6 +58,7 @@ const verifyEmail = async (req: Request, res: Response) => {
       success: true,
       message: "Email verified successfully",
       data: userData,
+      token: result.token, // ✅ ADD THIS
     });
   } catch (error: any) {
     res.status(400).json({
@@ -83,6 +84,7 @@ const login = async (req: Request, res: Response) => {
       success: true,
       message: "Login successful",
       data: userData,
+      token: result.token, // ✅ ADD THIS
     });
   } catch (error: any) {
     res.status(400).json({

@@ -1,22 +1,31 @@
-import nodemailer from 'nodemailer';
-import config from '../config';
+import nodemailer from "nodemailer";
+import config from "../config";
+import dns from "dns";
 
-// ✅ Don't use service: 'gmail' — configure manually with port 587
+// ✅ Force Node.js to use IPv4 instead of IPv6
+dns.setDefaultResultOrder("ipv4first");
+
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,          // ✅ port 587 (TLS) — Render allows this
-  secure: false,      // ✅ false for port 587 (true is only for port 465)
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
   auth: {
     user: config.email_user,
     pass: config.email_pass,
   },
-});
+  tls: {
+    rejectUnauthorized: false,
+  },
+} as nodemailer.TransportOptions); // ✅ cast fixes the TypeScript error
 
-export const sendOtpEmail = async (email: string, otp: string): Promise<void> => {
+export const sendOtpEmail = async (
+  email: string,
+  otp: string,
+): Promise<void> => {
   const mailOptions = {
     from: `"TutorLagbe" <${config.email_user}>`,
     to: email,
-    subject: 'Your TutorLagbe Verification Code',
+    subject: "Your TutorLagbe Verification Code",
     html: `
       <h2>Welcome to TutorLagbe!</h2>
       <p>Your verification code is:</p>
@@ -30,7 +39,7 @@ export const sendOtpEmail = async (email: string, otp: string): Promise<void> =>
     await transporter.sendMail(mailOptions);
     console.log(`✅ OTP email sent to ${email}`);
   } catch (error) {
-    console.error('❌ Full email error:', error);
-    throw new Error('Failed to send OTP email');
+    console.error("❌ Full email error:", error);
+    throw new Error("Failed to send OTP email");
   }
 };

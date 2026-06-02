@@ -2,10 +2,15 @@ import nodemailer from "nodemailer";
 import config from "../config";
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // 🌟 CRITICAL: false for port 587, true for port 465
   auth: {
     user: config.email_user,
     pass: config.email_pass,
+  },
+  tls: {
+    rejectUnauthorized: false, // 🌟 BYPASSES cloud firewalls blocking SMTP handshakes
   },
 });
 

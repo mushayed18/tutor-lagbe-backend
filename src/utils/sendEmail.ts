@@ -1,16 +1,20 @@
 import nodemailer from "nodemailer";
 import config from "../config";
+import dns from "node:dns";
+
+// Force Node's internal DNS lookup system to prefer IPv4 addresses (A records) over IPv6 (AAAA records)
+dns.setDefaultResultOrder("ipv4first");
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  secure: false, // 🌟 CRITICAL: false for port 587, true for port 465
+  secure: false, // Must be false for port 587
   auth: {
     user: config.email_user,
     pass: config.email_pass,
   },
   tls: {
-    rejectUnauthorized: false, // 🌟 BYPASSES cloud firewalls blocking SMTP handshakes
+    rejectUnauthorized: false, // Bypasses self-signed certificate blocks on cloud firewalls
   },
 });
 

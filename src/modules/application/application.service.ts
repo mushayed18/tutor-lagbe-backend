@@ -1,6 +1,16 @@
 import { prisma } from "../../lib/prisma";
 import { AuthUser } from "../../types/common";
 
+const FREE_DAILY_APPLICATION_LIMIT = 5;
+
+const isPremiumActive = (user: {
+  subscriptionType: string;
+  subscriptionExpiresAt: Date | null;
+}) =>
+  user.subscriptionType === "PREMIUM" &&
+  !!user.subscriptionExpiresAt &&
+  new Date(user.subscriptionExpiresAt) > new Date();
+
 const applyToTuition = async (requester: AuthUser, tuitionId: string) => {
   // 1. Check tuition exists
   const tuition = await prisma.tuition.findUnique({
@@ -37,10 +47,37 @@ const applyToTuition = async (requester: AuthUser, tuitionId: string) => {
 
   const tutor = await prisma.user.findUnique({
     where: { id: requester.id },
-    select: { name: true },
+    select: {
+      name: true,
+      subscriptionType: true,
+      subscriptionExpiresAt: true,
+    },
   });
 
-  // 5. Create application
+  if (!tutor) {
+    throw new Error("User not found");
+  }
+
+  // 5. Free-tier tutors are capped at N applications per calendar day
+  if (!isPremiumActive(tutor)) {
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const applicationsToday = await prisma.application.count({
+      where: {
+        tutorId: requester.id,
+        createdAt: { gte: startOfDay },
+      },
+    });
+
+    if (applicationsToday >= FREE_DAILY_APPLICATION_LIMIT) {
+      throw new Error(
+        `Free plan limit reached: you can apply to ${FREE_DAILY_APPLICATION_LIMIT} jobs per day. Upgrade to Premium for unlimited applications.`,
+      );
+    }
+  }
+
+  // 6. Create application
   const application = await prisma.application.create({
     data: {
       tuitionId,
@@ -53,7 +90,7 @@ const applyToTuition = async (requester: AuthUser, tuitionId: string) => {
       userId: tuition.parentId,
       tuitionId: tuition.id,
       title: "New Application",
-      message: `${tutor?.name || "A tutor"} has applied to your tuition`,
+      message: `${tutor.name || "A tutor"} has applied to your tuition`,
       type: "APPLY",
     },
   });

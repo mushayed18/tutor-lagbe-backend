@@ -5,8 +5,14 @@ model Payment {
 
   type   PaymentType
   amount Int
+  currency String @default("bdt")
 
   status PaymentStatus
+
+  // Stripe tracking — stripeCheckoutSessionId doubles as our webhook idempotency key
+  stripeCheckoutSessionId String? @unique
+  stripeCustomerId        String?
+  periodEnd               DateTime? // subscription end date this payment purchased
 
   createdAt DateTime @default(now())
 

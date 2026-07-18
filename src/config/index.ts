@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
-import path from 'path';
+import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config({ path: path.join(process.cwd(), '.env') });
+dotenv.config({ path: path.join(process.cwd(), ".env") });
 
 export default {
   port: process.env.PORT,
@@ -14,4 +14,17 @@ export default {
   cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
   cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
   brevo_api_key: process.env.BREVO_API_KEY,
+
+  // Stripe
+  stripe_secret_key: process.env.STRIPE_SECRET_KEY,
+  stripe_webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
+  stripe_currency: process.env.STRIPE_CURRENCY || "bdt",
+
+  // Prices are in the smallest currency unit (poisha for BDT: 100 = ৳1)
+  subscription_price_tutor:
+    Number(process.env.SUBSCRIPTION_PRICE_TUTOR) || 50000, // ৳500/mo
+  subscription_price_parent:
+    Number(process.env.SUBSCRIPTION_PRICE_PARENT) || 80000, // ৳800/mo
+
+  frontend_url: process.env.FRONTEND_URL || "http://localhost:3000",
 };

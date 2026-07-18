@@ -752,10 +752,6 @@ export type NullableEnumSubscriptionRoleFieldUpdateOperationsInput = {
   set?: $Enums.SubscriptionRole | null
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type UserCreateWithoutApplicationsInput = {
   id?: string
   name: string

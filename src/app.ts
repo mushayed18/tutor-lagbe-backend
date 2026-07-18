@@ -11,8 +11,19 @@ import notificationRoutes from "./modules/notification/notification.route";
 import hireRelationRoutes from "./modules/hireRelation/hireRelation.route";
 import portfolioRoutes from "./modules/tutorPortfolio/portfolio.route";
 import adminRoutes from "./modules/admin/admin.route";
+import subscriptionRoutes from "./modules/subscription/subscription.route";
+import { handleWebhook } from "./modules/subscription/subscription.controller";
 
 const app: Application = express();
+
+// ⚠️ Stripe webhook MUST be registered before express.json().
+// Stripe needs the raw, unparsed request body to verify the signature —
+// if express.json() runs first, it consumes the body and signature checks fail.
+app.post(
+  "/api/subscriptions/webhook",
+  express.raw({ type: "application/json" }),
+  handleWebhook,
+);
 
 // parsers
 app.use(express.json({ limit: "10mb" }));
@@ -54,6 +65,7 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/hire-relations", hireRelationRoutes);
 app.use("/api/portfolio", portfolioRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/subscriptions", subscriptionRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello from Tutor Lagbe!");
